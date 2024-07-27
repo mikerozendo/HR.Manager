@@ -1,6 +1,4 @@
-﻿using static System.Net.WebRequestMethods;
-
-namespace Sales.Backoffice.Repositories.External;
+﻿namespace Sales.Backoffice.Web.Repositories;
 
 public class HealthCheckRepository : IHealthCheckRepository
 {

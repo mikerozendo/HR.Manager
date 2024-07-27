@@ -14,13 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="UseCases\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj" />
-    <ProjectReference Include="..\Sales.Backoffice.Repositories\Sales.Backoffice.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

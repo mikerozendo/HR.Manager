@@ -1,6 +1,4 @@
-using Sales.Backoffice.Application.UseCases;
-using Sales.Backoffice.Repositories.External;
-
+using Sales.Backoffice.Web.Repositories;
 internal class Program
 {
     private static void Main(string[] args)
@@ -10,7 +8,6 @@ internal class Program
         // Add services to the container.
         builder.Services.AddControllersWithViews();
         builder.Services.AddScoped<IHealthCheckRepository, HealthCheckRepository>();
-        builder.Services.AddScoped<IHealthCheckUseCase, HealthCheckUseCase>();
         
         var app = builder.Build();
 

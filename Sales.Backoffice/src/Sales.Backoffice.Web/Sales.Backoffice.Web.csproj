@@ -10,9 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj" />
     <ProjectReference Include="..\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj" />
-    <ProjectReference Include="..\Sales.Backoffice.Repositories\Sales.Backoffice.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

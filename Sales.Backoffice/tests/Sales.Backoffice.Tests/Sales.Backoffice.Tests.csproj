@@ -17,10 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj" />
-    <ProjectReference Include="..\..\src\Sales.Backoffice.Identity\Sales.Backoffice.Identity.csproj" />
     <ProjectReference Include="..\..\src\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj" />
-    <ProjectReference Include="..\..\src\Sales.Backoffice.Repositories\Sales.Backoffice.Repositories.csproj" />
     <ProjectReference Include="..\..\src\Sales.Backoffice.WebApi\Sales.Backoffice.WebApi.csproj" />
     <ProjectReference Include="..\..\src\Sales.Backoffice.Web\Sales.Backoffice.Web.csproj" />
   </ItemGroup>

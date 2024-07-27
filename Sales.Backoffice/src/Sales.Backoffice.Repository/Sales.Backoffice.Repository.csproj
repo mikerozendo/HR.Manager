@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Internal\" />
-  </ItemGroup>
-
 </Project>

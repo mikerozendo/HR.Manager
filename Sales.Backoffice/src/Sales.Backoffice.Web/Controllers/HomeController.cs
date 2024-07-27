@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Sales.Backoffice.Application.UseCases;
 using Sales.Backoffice.Web.Models;
+using Sales.Backoffice.Web.Repositories;
 using System.Diagnostics;
 
 namespace Sales.Backoffice.Web.Controllers
@@ -8,8 +8,8 @@ namespace Sales.Backoffice.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IHealthCheckUseCase _healthCheckUseCase;
-        public HomeController(ILogger<HomeController> logger, IHealthCheckUseCase healthCheckUseCase)
+        private readonly IHealthCheckRepository _healthCheckUseCase;
+        public HomeController(ILogger<HomeController> logger, IHealthCheckRepository healthCheckUseCase)
         {
             _logger = logger;
             _healthCheckUseCase = healthCheckUseCase;
