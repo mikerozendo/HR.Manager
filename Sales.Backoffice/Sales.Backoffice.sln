@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Models", "src\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj", "{3348FBDC-5475-472E-8908-42800B6ABF7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Identity", "src\Sales.Backoffice.Identity\Sales.Backoffice.Identity.csproj", "{4C921E0F-1661-47DD-AC12-5EB7C08A5719}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{3348FBDC-5475-472E-8908-42800B6ABF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3348FBDC-5475-472E-8908-42800B6ABF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3348FBDC-5475-472E-8908-42800B6ABF7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
