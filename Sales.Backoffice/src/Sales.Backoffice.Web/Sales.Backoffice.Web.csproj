@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>5cc7d1ba-67c2-439c-99d7-e062a125ba54</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj" />
+    <ProjectReference Include="..\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj" />
+  </ItemGroup>
+
+</Project>
