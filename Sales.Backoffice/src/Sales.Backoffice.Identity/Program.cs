@@ -1,4 +1,5 @@
 ﻿using Sales.Backoffice.Identity;
+using Sales.Backoffice.Identity.Configuration;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -16,18 +17,20 @@ try
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
 
-    var app = builder
-        .ConfigureServices()
-        .ConfigurePipeline();
+    var envConfig = builder.Configuration.Get<EnvironmentConfiguration>();
+    if (envConfig is null)
+        throw new ArgumentNullException(nameof(EnvironmentConfiguration));
 
-    // this seeding is only for the template to bootstrap the DB and users.
-    // in production you will likely want a different approach.
-    if (args.Contains("/seed"))
+    var app = builder.ConfigureServices(envConfig).ConfigurePipeline();
+
+    if (envConfig.ApplicationLocalConfig.ShouldSeedRoles)
     {
-        Log.Information("Seeding database...");
-        SeedData.EnsureSeedData(app);
-        Log.Information("Done seeding database. Exiting.");
-        return;
+        SeedData.SeedRoles(app);
+    }
+
+    if (envConfig.ApplicationLocalConfig.ShouldSeedUsersWithClaims)
+    {
+        SeedData.SeedUsers(app);
     }
 
     app.Run();

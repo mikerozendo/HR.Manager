@@ -18,6 +18,7 @@ namespace Sales.Backoffice.Identity.Pages.Redirect
             {
                 return RedirectToPage("/Home/Error/Index");
             }
+            
 
             RedirectUri = redirectUri;
             return Page();
