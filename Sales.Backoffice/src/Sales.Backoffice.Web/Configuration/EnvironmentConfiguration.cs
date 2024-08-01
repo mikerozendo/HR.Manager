@@ -1,13 +1,21 @@
 ﻿namespace Sales.Backoffice.Web.Configuration;
 
-public class EnvironmentConfiguration
+public record EnvironmentConfiguration
 {
-    public WebServiceUrls WebServiceUrls { get; set; }
+    public  WebServiceUrls WebServiceUrls { get; init; }
+    public Identity Identity { get; init; }
 }
 
-public class WebServiceUrls
+public record WebServiceUrls
 {
-    public string SalesBackofficeWebApi { get; set; }
-    public string SalesBackofficeIdentity { get; set; }
+    public string SalesBackofficeWebApi { get; init; }
+    public string SalesBackofficeIdentity { get; init; }
 }
 
+public record Identity
+{
+    public string ClientId { get; init; }
+    public string ClientSecret { get; init; }
+    public string ResponseType { get; init; }
+    public string AllowedScopes { get; init; }
+}
