@@ -14,7 +14,7 @@ namespace Sales.Backoffice.Identity.Configuration
 
         public static IEnumerable<ApiScope> GetApiScopes() =>
             [
-                new ApiScope("sales_backoffice_web","Sales.Backoffice"),
+                new ApiScope("sales_backoffice_webapi","Sales.Backoffice"),
                 new ApiScope("read","read data"),
                 new ApiScope("write","write data"),
                 new ApiScope("update","update data"),
@@ -30,17 +30,17 @@ namespace Sales.Backoffice.Identity.Configuration
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:6000/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:6000/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:6000/signout-callback-oidc" },
+                    RedirectUris = { "https://localhost:6001/signin-oidc" },
+                    FrontChannelLogoutUri = "https://localhost:6001/signout-oidc",
+                    PostLogoutRedirectUris = { "https://localhost:6001/signout-callback-oidc" },
 
-                    AllowOfflineAccess = false,
+                    AllowOfflineAccess = true,
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        envConfig.Clients.SalesBackoffice.CliendId
+                        "sales_backoffice_webapi"
                     }
                 },
             ];

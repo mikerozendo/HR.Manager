@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sales.Backoffice.Web.Models;
 using Sales.Backoffice.Web.Repositories;
@@ -18,6 +20,17 @@ namespace Sales.Backoffice.Web.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [Authorize]
+        public IActionResult Login()
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Logout()
+        {
+            return SignOut("Cookies","oidc");
         }
 
         public async Task<IActionResult> Privacy()
