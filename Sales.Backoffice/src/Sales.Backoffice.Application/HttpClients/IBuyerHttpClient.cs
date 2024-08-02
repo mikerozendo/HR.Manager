@@ -1,5 +1,5 @@
 ﻿using Refit;
-using Sales.Backoffice.Models.Dto;
+using Sales.Backoffice.Dto;
 
 namespace Sales.Backoffice.Application.HttpClients;
 

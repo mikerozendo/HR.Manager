@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj" />
     <ProjectReference Include="..\..\src\Sales.Backoffice.WebApi\Sales.Backoffice.WebApi.csproj" />
     <ProjectReference Include="..\..\src\Sales.Backoffice.Web\Sales.Backoffice.Web.csproj" />
   </ItemGroup>

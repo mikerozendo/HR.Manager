@@ -18,8 +18,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace Sales.Backoffice.Models.Dto;
+﻿namespace Sales.Backoffice.Dto;
 
 public class BuyerDto
 {
