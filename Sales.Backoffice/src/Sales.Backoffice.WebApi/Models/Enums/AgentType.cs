@@ -1,6 +1,6 @@
 ﻿namespace Sales.Backoffice.WebApi.Models.Enums;
 
-public enum PersonType
+public enum AgentType
 {
     Individual,
     Company

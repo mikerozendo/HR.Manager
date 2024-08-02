@@ -2,7 +2,7 @@
 
 namespace Sales.Backoffice.WebApi.Models;
 
-public class Document : RegisterBase
+public class Document : AssignedToAnAgent
 {
     public string Number { get; set; }
     public DocumentType DocumentType { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Sales.Backoffice.WebApi.Models;
 
-public class Adress : RegisterBase
+public class Adress : AssignedToAnAgent
 {
     public AdressCategory AdressCategory { get; set; }
     public AdressType AdressType { get; set; }

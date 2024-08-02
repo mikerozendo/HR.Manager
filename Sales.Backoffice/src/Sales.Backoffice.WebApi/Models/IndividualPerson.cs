@@ -2,7 +2,7 @@
 
 namespace Sales.Backoffice.WebApi.Models;
 
-public class IndividualPerson : Person
+public class IndividualPerson : Agent
 {
     public string Name { get; set; }
     public string LastName { get; set; }
