@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Web", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Identity", "src\Sales.Backoffice.Identity\Sales.Backoffice.Identity.csproj", "{4C921E0F-1661-47DD-AC12-5EB7C08A5719}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Models", "src\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj", "{F56F35E8-67F4-4196-92FB-E8C02631F7BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Models", "src\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj", "{F56F35E8-67F4-4196-92FB-E8C02631F7BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Repository", "src\Sales.Backoffice.Repository\Sales.Backoffice.Repository.csproj", "{A18C3E9E-379A-4B4D-961F-DF0E22F4B54B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Repository", "src\Sales.Backoffice.Repository\Sales.Backoffice.Repository.csproj", "{A18C3E9E-379A-4B4D-961F-DF0E22F4B54B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Application", "src\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj", "{7E743B87-C1CF-40FA-B6AF-BB67E700F445}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Application", "src\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj", "{7E743B87-C1CF-40FA-B6AF-BB67E700F445}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

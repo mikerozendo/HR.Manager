@@ -1,35 +1,42 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using static System.Net.WebRequestMethods;
-
+using Sales.Backoffice.WebApi.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var envConfig = builder.Configuration.Get<EnvironmentConfiguration>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
     {
-        opt.Authority = "https://localhost:5001/";
-        opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-        {
-            ValidateAudience = false
-        };
+        opt.Authority = envConfig.IdentityConfig.Url;
+        opt.Audience = "sales_backoffice_webapi"; // ID da API que o token deve ter como público
+
+        opt.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
+        //opt.TokenValidationParameters = new TokenValidationParameters
+        //{
+        //    ValidateAudience = false,
+
+        //};
     });
 
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("ApiScope", policy =>
     {
         policy.RequireAuthenticatedUser();
-        policy.RequireClaim("scope", "sales_backoffice_web");
+        policy.RequireClaim(
+            "scope",
+            envConfig.IdentityConfig.Scope);
     });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -41,6 +48,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-
+//app.MapControllers().RequireAuthorization("ApiScope");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers().RequireAuthorization("ApiScope");
+});
 app.Run();
