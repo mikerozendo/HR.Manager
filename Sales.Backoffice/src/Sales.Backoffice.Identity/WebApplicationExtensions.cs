@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Sales.Backoffice.Identity.Configuration;
 using Sales.Backoffice.Identity.Data;
 using Sales.Backoffice.Identity.Models;
@@ -30,11 +31,12 @@ internal static class WebApplicationExtensions
                 options.Events.RaiseSuccessEvents = true;
                 options.EmitStaticAudienceClaim = true;
             })
+            .AddInMemoryApiResources(IdentityConfiguration.ApiResources(envConfig))
             .AddInMemoryIdentityResources(IdentityConfiguration.IdentityResources)
             .AddInMemoryApiScopes(IdentityConfiguration.GetApiScopes(envConfig))
             .AddInMemoryClients(builder.GetClients(envConfig))
             .AddAspNetIdentity<ApplicationUser>();
-
+       
         return builder.Build();
     }
 

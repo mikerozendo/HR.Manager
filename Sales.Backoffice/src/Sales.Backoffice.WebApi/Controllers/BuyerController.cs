@@ -24,7 +24,8 @@ public class BuyerController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<BuyerDto>> Get()
+    [Route(nameof(GetBuyers))]
+    public async Task<ActionResult<BuyerDto>> GetBuyers()
     {
         return Ok(new List<BuyerDto> { new BuyerDto { Name = "Test Michael" } });
     }

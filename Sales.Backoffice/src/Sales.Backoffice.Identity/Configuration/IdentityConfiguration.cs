@@ -44,4 +44,15 @@ public static class IdentityConfiguration
                 }
             },
         ];
+
+    public static IEnumerable<ApiResource> ApiResources(EnvironmentConfiguration envConfig) =>
+    [
+        new ApiResource(envConfig.Scopes.SalesBackofficeWebApi, "Sales Backoffice API")
+        {
+            Scopes = { envConfig.Scopes.SalesBackofficeWebApi },
+
+                            ApiSecrets = { new Secret("api-secret".Sha256()) }
+
+        }
+    ];
 }

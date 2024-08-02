@@ -10,6 +10,6 @@ public interface IBuyerHttpClient
     [Post("/buyer/")]
     Task<ApiResponse<BuyerDto>> Post(BuyerDto input);
 
-    [Get("/buyer/")]
+    [Get("/Buyer/GetBuyers")]
     Task<ApiResponse<List<BuyerDto>>> Get();
 }
