@@ -1,6 +1,7 @@
 ﻿namespace Sales.Backoffice.Dto;
 
-public class BuyerDto
+public class GetEmployeesResponse
 {
     public string Name { get; set; }
+    public string LastName { get; set; }
 }

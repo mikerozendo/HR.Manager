@@ -10,4 +10,8 @@
     <PackageReference Include="Refit" Version="7.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sales.Backoffice.Dto\Sales.Backoffice.Dto.csproj" />
+  </ItemGroup>
+
 </Project>

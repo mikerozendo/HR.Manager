@@ -1,6 +1,5 @@
 ﻿using Refit;
-using Sales.Backoffice.Application.RequestModels;
-using Sales.Backoffice.Application.Responses;
+using Sales.Backoffice.Dto.Requests;
 
 namespace Sales.Backoffice.Application.HttpClients;
 
@@ -8,8 +7,8 @@ namespace Sales.Backoffice.Application.HttpClients;
 public interface IEmployeeHttpClient
 {
     [Post("/Employee/")]
-    Task<ApiResponse<EmployeeResponse>> Post(EmployeeRequest input);
+    Task<ApiResponse<CreateEmployeeRequest>> Post(CreateEmployeeRequest input);
 
     [Get("/Employee/")]
-    Task<ApiResponse<List<EmployeeRequest>>> Get();
+    Task<ApiResponse<List<CreateEmployeeRequest>>> Get();
 }

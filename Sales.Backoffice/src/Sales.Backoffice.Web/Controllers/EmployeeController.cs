@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Sales.Backoffice.Application.RequestModels;
 using Sales.Backoffice.Application.Services;
+using Sales.Backoffice.Dto.Requests;
 
 namespace Sales.Backoffice.Web.Controllers;
 
@@ -16,13 +16,16 @@ public class EmployeeController : Controller
         _employeeService = employeeService;
     }
 
-    public IActionResult Index()
+    [HttpGet]
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var list = await _employeeService.GetAsync();
+        return View(list.Content);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(EmployeeRequest request)
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Post([FromForm]CreateEmployeeRequest request)
     {
         var response = await _employeeService.PostAsync(request);
         return CreatedAtAction(nameof(Index), request);

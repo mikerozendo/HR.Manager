@@ -1,6 +1,6 @@
 ﻿using Refit;
 using Sales.Backoffice.Application.HttpClients;
-using Sales.Backoffice.Application.RequestModels;
+using Sales.Backoffice.Dto.Requests;
 
 namespace Sales.Backoffice.Application.Services;
 
@@ -13,13 +13,13 @@ public class EmployeeService : IEmployeeService
         _httpClient = httpClient;
     }
 
-    public async Task<ApiResponse<EmployeeRequest>> PostAsync(EmployeeRequest EmployeeRequest)
+    public async Task<ApiResponse<CreateEmployeeRequest>> PostAsync(CreateEmployeeRequest CreateEmployeeRequest)
     {
-        var response = await _httpClient.Post(EmployeeRequest);
+        var response = await _httpClient.Post(CreateEmployeeRequest);
         return response;
     }
 
-    public async Task<ApiResponse<List<EmployeeRequest>>> GetAsync()
+    public async Task<ApiResponse<List<CreateEmployeeRequest>>> GetAsync()
     {
         var response = await _httpClient.Get();
         return response;

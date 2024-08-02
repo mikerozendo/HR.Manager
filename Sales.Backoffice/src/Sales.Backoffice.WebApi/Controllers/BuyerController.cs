@@ -16,7 +16,7 @@ public class BuyerController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] BuyerDto buyer)
+    public async Task<IActionResult> Post([FromBody] GetEmployeesResponse buyer)
     {
         await Task.Delay(1);
         _logger.LogInformation("Creating a new buyer");
@@ -25,8 +25,8 @@ public class BuyerController : ControllerBase
 
     [HttpGet]
     [Route(nameof(GetBuyers))]
-    public async Task<ActionResult<BuyerDto>> GetBuyers()
+    public async Task<ActionResult<GetEmployeesResponse>> GetBuyers()
     {
-        return Ok(new List<BuyerDto> { new BuyerDto { Name = "Test Michael" } });
+        return Ok(new List<GetEmployeesResponse> { new GetEmployeesResponse { Name = "Test Michael" } });
     }
 }

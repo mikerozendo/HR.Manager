@@ -20,7 +20,7 @@ internal class Program
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddControllersWithViews();
         builder.Services.AddTransient<AuthenticationHandler>();
-        builder.Services.AddScoped<IBuyerService, BuyerService>();
+        builder.Services.AddScoped<IEmployeeService, EmployeeService>();
         
         builder.Services
          .AddRefitClient<IEmployeeHttpClient>()
