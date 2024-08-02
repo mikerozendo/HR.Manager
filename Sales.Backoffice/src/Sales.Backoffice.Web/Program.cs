@@ -23,7 +23,7 @@ internal class Program
         builder.Services.AddScoped<IBuyerService, BuyerService>();
         
         builder.Services
-         .AddRefitClient<IBuyerHttpClient>()
+         .AddRefitClient<IEmployeeHttpClient>()
          .AddHttpMessageHandler<AuthenticationHandler>()
          .ConfigureHttpClient(c => c.BaseAddress = new Uri(configuration.WebServiceUrls.SalesBackofficeWebApi));
 

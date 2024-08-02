@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj" />
-    <ProjectReference Include="..\Sales.Backoffice.Dto\Sales.Backoffice.Dto.csproj" />
   </ItemGroup>
 
 </Project>
