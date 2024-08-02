@@ -21,7 +21,7 @@ builder.Services.AddDbContextPool<ApplicationDbContext>(
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
     {
-        opt.Authority = envConfig.IdentityConfig.Url;
+        opt.Authority = envConfig.IdentityConfig.Url; 
         opt.Audience = "sales_backoffice_webapi";
         opt.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
     });
