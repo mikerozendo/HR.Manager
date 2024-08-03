@@ -5,33 +5,41 @@
     ViewData["Title"] = "Create a new Employee";
 }
 
-<div class="card">
+<div class="card color-primary-gray default-card">
   <div class="card-header">
         <h5 class="card-title">Create a new Employee</h5>
     </div>
   <div class="card-body">
         <form asp-action="Post" asp-asp-controller="Employee">
-            <div class="mb-3">
-                <label asp-for="Name" for="formFile" class="form-label">Name:&nbsp;</label>
-                <input asp-for="Name" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label asp-for="LastName" class="form-label">Last Name:</label>
-                <input asp-for="LastName" class="form-control">
-            </div>
-            <fieldset>
-                <legend>
-                    Documents
-                </legend>
-                <div class="mb-3">
-                    <label asp-for="Rg" class="form-label">Rg</label>
-                    <input asp-for="Rg">
+            <div class="form-row">
+                <div class="col">
+                   <fieldset>
+                       <legend>Basic data</legend>
+                        <div class="mb-3">
+                            <label asp-for="Name" for="formFile" class=" form-label">Name:&nbsp;</label>
+                            <input asp-for="Name" class="form-control">
+                            <label asp-for="LastName" class="form-label">Last Name:</label>
+                            <input asp-for="LastName" class="form-control">
+                        </div>
+                   </fieldset>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="Cpf" class="form-label">Cpf</label>
-                    <input asp-for="Cpf">
+                <div class="col">
+                    <fieldset>
+                        <legend>
+                            Documents
+                        </legend>
+                        <div class="mb-3">
+                            <label asp-for="Rg" class="form-label">Rg</label>
+                            <input asp-for="Rg">
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Cpf" class="form-label">Cpf</label>
+                            <input asp-for="Cpf">
+                        </div>
+                    </fieldset>
                 </div>
-            </fieldset>
+            </div>
+
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
   </div>
