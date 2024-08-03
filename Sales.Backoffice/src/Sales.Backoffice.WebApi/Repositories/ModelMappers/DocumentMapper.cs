@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.WebApi.Models;
 
-namespace Sales.Backoffice.WebApi.Repositories.ModelMappings;
+namespace Sales.Backoffice.WebApi.Repositories.ModelMappers;
 
 public static class DocumentMapper
 {

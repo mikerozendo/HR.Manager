@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Sales.Backoffice.Dto;
+using Sales.Backoffice.Dto.Responses;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.WebApi.Models;
 using Sales.Backoffice.WebApi.Repositories.ModelMappers;
-using Sales.Backoffice.WebApi.Repositories.ModelMappings;
 
 namespace Sales.Backoffice.WebApi.Repositories;
 

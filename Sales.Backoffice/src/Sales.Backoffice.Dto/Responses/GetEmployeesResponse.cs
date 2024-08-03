@@ -1,4 +1,4 @@
-﻿namespace Sales.Backoffice.Dto;
+﻿namespace Sales.Backoffice.Dto.Responses;
 
 public class GetEmployeesResponse
 {
