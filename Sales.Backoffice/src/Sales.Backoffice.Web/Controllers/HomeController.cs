@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sales.Backoffice.Web.Models;
-using Sales.Backoffice.Web.Repositories;
 using System.Diagnostics;
 
 namespace Sales.Backoffice.Web.Controllers;

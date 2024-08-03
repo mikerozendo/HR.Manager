@@ -5,7 +5,6 @@ using Sales.Backoffice.Application.HttpClients;
 using Sales.Backoffice.Application.Services;
 using Sales.Backoffice.Web;
 using Sales.Backoffice.Web.Configuration;
-using Sales.Backoffice.Web.Repositories;
 using System.Security.Cryptography.X509Certificates;
 
 internal class Program
