@@ -30,6 +30,17 @@ public class EmployeeController : Controller
         var response = await _employeeService.PostAsync(request);
         return CreatedAtAction(nameof(Index), request);
     }
+
+    [HttpPost]
+    public IActionResult AddContact(CreateEmployeeRequest model)
+    {
+        var newContact = new CreatePersonContactListRequest();
+        model.PersonContactList.Add(newContact);
+
+        return PartialView("_PersonContactList", newContact);
+    }
+
+
     public IActionResult Create()
     {
         return View();
