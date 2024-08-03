@@ -19,8 +19,8 @@ public class EmployeeController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        var list = await _employeeService.GetAsync();
-        return View(list);
+        //var list = await _employeeService.GetAsync();
+        return View(new List<object>());
     }
 
     [HttpPost]
@@ -28,18 +28,8 @@ public class EmployeeController : Controller
     public async Task<IActionResult> Post([FromForm] CreateEmployeeRequest request)
     {
         var response = await _employeeService.PostAsync(request);
-        return CreatedAtAction(nameof(Index), request);
+        return CreatedAtAction(nameof(Index), response.Content);
     }
-
-    [HttpPost]
-    public IActionResult AddContact(CreateEmployeeRequest model)
-    {
-        var newContact = new CreatePersonContactListRequest();
-        model.PersonContactList.Add(newContact);
-
-        return PartialView("_PersonContactList", newContact);
-    }
-
 
     public IActionResult Create()
     {

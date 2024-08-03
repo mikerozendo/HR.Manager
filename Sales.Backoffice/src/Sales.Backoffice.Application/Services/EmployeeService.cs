@@ -14,15 +14,15 @@ public class EmployeeService : IEmployeeService
         _httpClient = httpClient;
     }
 
-    public async Task<ApiResponse<CreateEmployeeRequest>> PostAsync(CreateEmployeeRequest CreateEmployeeRequest)
+    public async Task<ApiResponse<EntityCreatedResponse>> PostAsync(CreateEmployeeRequest CreateEmployeeRequest)
     {
         var response = await _httpClient.Post(CreateEmployeeRequest);
         return response;
     }
 
-    public async Task<List<GetEmployeesResponse>> GetAsync()
-    {
-        var response = await _httpClient.Get();
-        return response.Content ?? [];
-    }
+    //public async Task<List<CreateEmployeesResponse>> GetAsync()
+    //{
+    //    var response = await _httpClient.Get();
+    //    return response.Content ?? [];
+    //}
 }

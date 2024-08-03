@@ -6,6 +6,6 @@ namespace Sales.Backoffice.Application.Services;
 
 public interface IEmployeeService
 {
-    Task<ApiResponse<CreateEmployeeRequest>> PostAsync(CreateEmployeeRequest CreateEmployeeRequest);
-    Task<List<GetEmployeesResponse>> GetAsync();
+    Task<ApiResponse<EntityCreatedResponse>> PostAsync(CreateEmployeeRequest CreateEmployeeRequest);
+    //Task<List<CreateEmployeesResponse>> GetAsync();
 }

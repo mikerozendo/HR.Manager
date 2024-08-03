@@ -1,11 +1,10 @@
-﻿using FluentResults;
-using MediatR;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Sales.Backoffice.Dto.Requests;
 
-public class CreateEmployeeRequest : IRequest<Result>
+public class CreateEmployeeRequest : IRequest<ObjectResult>
 {
     [Required]
     public string Name { get; set; }

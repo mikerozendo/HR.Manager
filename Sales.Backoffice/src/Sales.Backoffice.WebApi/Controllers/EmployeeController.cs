@@ -21,8 +21,7 @@ public class EmployeeController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] CreateEmployeeRequest request)
     {
-        var response = await _mediator.Send(request);
-        return Created(); 
+        return await _mediator.Send(request);
     }
 
     [HttpGet]

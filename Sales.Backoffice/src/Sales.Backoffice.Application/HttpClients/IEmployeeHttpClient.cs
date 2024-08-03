@@ -8,8 +8,8 @@ namespace Sales.Backoffice.Application.HttpClients;
 public interface IEmployeeHttpClient
 {
     [Post("/Employee")]
-    Task<ApiResponse<CreateEmployeeRequest>> Post(CreateEmployeeRequest input);
+    Task<ApiResponse<EntityCreatedResponse>> Post(CreateEmployeeRequest input);
 
-    [Get("/Employee")]
-    Task<ApiResponse<List<GetEmployeesResponse>>> Get();
+    //[Get("/Employee")]
+    //Task<ApiResponse<List<CreateEmployeesResponse>>> Get();
 }
