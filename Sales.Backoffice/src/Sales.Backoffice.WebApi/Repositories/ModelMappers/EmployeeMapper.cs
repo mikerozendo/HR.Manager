@@ -8,8 +8,7 @@ public static class EmployeeMapper
     public static void Map(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Employee>()
-        .UseTptMappingStrategy()
-        .HasKey(x => x.Id);
+        .UseTptMappingStrategy();
 
         modelBuilder.Entity<Employee>()
         .HasOne(x => x.Department)

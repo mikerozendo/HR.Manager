@@ -14,9 +14,11 @@ builder.Services.AddSwaggerGen();
 var envConfig = builder.Configuration.Get<EnvironmentConfiguration>();
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(
-    opt => opt.UseSqlServer(
-        builder.Configuration.GetConnectionString(envConfig.ConnectionStrings.SqlServer)
-));
+    opt => opt.UseSqlServer(envConfig.ConnectionStrings.SqlServer)
+    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+    .UseLazyLoadingProxies(false)
+    .UseChangeTrackingProxies(false, false)
+    .EnableThreadSafetyChecks(false));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>

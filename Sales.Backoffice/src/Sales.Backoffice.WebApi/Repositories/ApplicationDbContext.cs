@@ -17,10 +17,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-        optionsBuilder.UseLazyLoadingProxies(false);
-        optionsBuilder.UseChangeTrackingProxies(false, false);
-        optionsBuilder.EnableThreadSafetyChecks(false);
+        //optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        //optionsBuilder.UseLazyLoadingProxies(false);
+        //optionsBuilder.UseChangeTrackingProxies(false, false);
+        //optionsBuilder.EnableThreadSafetyChecks(false);
         //optionsBuilder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
     }
 

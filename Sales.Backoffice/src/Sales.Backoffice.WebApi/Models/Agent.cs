@@ -10,7 +10,6 @@ public class Agent : RegisterBase
     public List<Adress> Adresses { get; set; } = [];
     public List<Contact> Contacts { get; set; } = [];
 
-
     public Agent() { }
     public Agent(AgentType personType)
     {

@@ -1,4 +1,5 @@
-﻿using Sales.Backoffice.WebApi.Models.Enums;
+﻿using Microsoft.EntityFrameworkCore;
+using Sales.Backoffice.WebApi.Models.Enums;
 
 namespace Sales.Backoffice.WebApi.Models;
 

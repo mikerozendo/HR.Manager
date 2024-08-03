@@ -7,7 +7,6 @@ public static class IndividualPersonMapper
     public static void Map(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<IndividualPerson>()
-        .UseTptMappingStrategy()
-        .HasKey(x => x.Id);
+        .UseTptMappingStrategy();
     }
 }
