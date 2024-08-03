@@ -6,41 +6,76 @@
 }
 
 <div class="card color-primary-gray default-card">
-  <div class="card-header">
-        <h5 class="card-title">Create a new Employee</h5>
+    <div class="card-header">
+        <h5 class="card-title">New Employee</h5>
     </div>
-  <div class="card-body">
+    <div class="card-body">
         <form asp-action="Post" asp-asp-controller="Employee">
             <div class="form-row">
                 <div class="col">
-                   <fieldset>
-                       <legend>Basic data</legend>
-                        <div class="mb-3">
-                            <label asp-for="Name" for="formFile" class=" form-label">Name:&nbsp;</label>
-                            <input asp-for="Name" class="form-control">
-                            <label asp-for="LastName" class="form-label">Last Name:</label>
-                            <input asp-for="LastName" class="form-control">
-                        </div>
-                   </fieldset>
-                </div>
-                <div class="col">
                     <fieldset>
-                        <legend>
-                            Documents
-                        </legend>
                         <div class="mb-3">
-                            <label asp-for="Rg" class="form-label">Rg</label>
-                            <input asp-for="Rg">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Name" class="form-control">
+                                        <label asp-for="Name" class="form-label">Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="LastName" class="form-control">
+                                        <label asp-for="LastName" class="form-label">Last Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="BirthDate" type="date" class="form-control">
+                                        <label asp-for="BirthDate" class="form-label">Birth Date</label>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-floating mb-3">
+                                        <select asp-for="SexType" class="form-select">
+                                            <option selected>Select an option</option>  
+                                            <option value="0">Male</option>
+                                            <option value="1">Female</option>
+                                        </select>
+                                        <label asp-for="SexType" class="form-label">Sex</label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="ZipCode" class="form-control">
+                                        <label asp-for="ZipCode" class="form-label">ZipCode</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </fieldset>
+                </div>
+                <div class="col hidden">
+                    <fieldset class="display">
                         <div class="mb-3">
-                            <label asp-for="Cpf" class="form-label">Cpf</label>
-                            <input asp-for="Cpf">
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Rg" class="form-control">
+                                        <label asp-for="Rg" class="form-label">Rg</label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Cpf" class="form-control">
+                                        <label asp-for="Cpf" class="form-label">Cpf</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </fieldset>
                 </div>
             </div>
-
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
-  </div>
+    </div>
 </div>
