@@ -10,8 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
 
 var envConfig = builder.Configuration.Get<EnvironmentConfiguration>();
+
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(
     opt => opt.UseSqlServer(envConfig.ConnectionStrings.SqlServer)

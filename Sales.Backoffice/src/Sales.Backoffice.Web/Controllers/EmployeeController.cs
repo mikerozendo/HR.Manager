@@ -20,14 +20,18 @@ public class EmployeeController : Controller
     public async Task<IActionResult> Index()
     {
         var list = await _employeeService.GetAsync();
-        return View(list.Content);
+        return View(list);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Post([FromForm]CreateEmployeeRequest request)
+    public async Task<IActionResult> Post([FromForm] CreateEmployeeRequest request)
     {
         var response = await _employeeService.PostAsync(request);
         return CreatedAtAction(nameof(Index), request);
+    }
+    public IActionResult Create()
+    {
+        return View();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Refit;
 using Sales.Backoffice.Application.HttpClients;
+using Sales.Backoffice.Dto;
 using Sales.Backoffice.Dto.Requests;
 
 namespace Sales.Backoffice.Application.Services;
@@ -19,9 +20,9 @@ public class EmployeeService : IEmployeeService
         return response;
     }
 
-    public async Task<ApiResponse<List<CreateEmployeeRequest>>> GetAsync()
+    public async Task<List<GetEmployeesResponse>> GetAsync()
     {
         var response = await _httpClient.Get();
-        return response;
+        return response.Content ?? [];
     }
 }

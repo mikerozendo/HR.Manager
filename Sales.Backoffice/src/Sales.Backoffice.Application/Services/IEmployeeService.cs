@@ -1,4 +1,5 @@
 ﻿using Refit;
+using Sales.Backoffice.Dto;
 using Sales.Backoffice.Dto.Requests;
 
 namespace Sales.Backoffice.Application.Services;
@@ -6,5 +7,5 @@ namespace Sales.Backoffice.Application.Services;
 public interface IEmployeeService
 {
     Task<ApiResponse<CreateEmployeeRequest>> PostAsync(CreateEmployeeRequest CreateEmployeeRequest);
-    Task<ApiResponse<List<CreateEmployeeRequest>>> GetAsync();
+    Task<List<GetEmployeesResponse>> GetAsync();
 }

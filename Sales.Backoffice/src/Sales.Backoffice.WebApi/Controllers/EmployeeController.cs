@@ -24,4 +24,11 @@ public class EmployeeController : ControllerBase
         var response = await _mediator.Send(request);
         return Created(); 
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        //var response = await _mediator.Send(request);
+        return NoContent();
+    }
 }
