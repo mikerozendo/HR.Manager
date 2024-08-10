@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Sales.Backoffice.Dto.Requests;
+namespace Sales.Backoffice.Dto.Requests.Commands;
 
 public class CreatePersonContactListRequest
 {

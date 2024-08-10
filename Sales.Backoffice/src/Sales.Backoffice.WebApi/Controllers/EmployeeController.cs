@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Sales.Backoffice.Dto.Requests;
+using Sales.Backoffice.Dto.Requests.Commands;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 
 [ApiController]
-[Authorize]
-[Route("[controller]")]
+//[Authorize]
+[Route("api/[controller]")]
 public class EmployeeController : ControllerBase
 {
     private readonly ILogger<EmployeeController> _logger;

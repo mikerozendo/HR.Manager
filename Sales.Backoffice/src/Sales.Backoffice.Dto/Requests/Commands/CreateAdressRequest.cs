@@ -1,4 +1,4 @@
-﻿namespace Sales.Backoffice.Dto.Requests;
+﻿namespace Sales.Backoffice.Dto.Requests.Commands;
 
 public class CreateAdressRequest
 {

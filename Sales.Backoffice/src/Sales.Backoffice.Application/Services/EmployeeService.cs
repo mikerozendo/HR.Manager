@@ -1,6 +1,6 @@
 ﻿using Refit;
 using Sales.Backoffice.Application.HttpClients;
-using Sales.Backoffice.Dto.Requests;
+using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Responses;
 
 namespace Sales.Backoffice.Application.Services;

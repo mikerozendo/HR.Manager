@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sales.Backoffice.Application.Services;
-using Sales.Backoffice.Dto.Requests;
+using Sales.Backoffice.Dto.Requests.Commands;
 
 namespace Sales.Backoffice.Web.Controllers;
 

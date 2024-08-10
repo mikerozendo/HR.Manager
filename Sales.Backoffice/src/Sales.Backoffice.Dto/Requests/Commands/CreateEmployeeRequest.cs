@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace Sales.Backoffice.Dto.Requests;
+namespace Sales.Backoffice.Dto.Requests.Commands;
 
 public class CreateEmployeeRequest : IRequest<ObjectResult>
 {
@@ -20,13 +20,13 @@ public class CreateEmployeeRequest : IRequest<ObjectResult>
     public string Cpf { get; set; }
 
     [Required]
-    public DateOnly BirthDate { get; set; }
+    public DateTime BirthDate { get; set; }
 
     [Required]
-    public DateOnly ContractStart { get; set; }
+    public DateTime ContractStart { get; set; }
 
     [Required]
-    [AllowedValues(0,1)]
+    [AllowedValues(0, 1)]
     public int SexType { get; set; }
 
     //[AllowNull]
