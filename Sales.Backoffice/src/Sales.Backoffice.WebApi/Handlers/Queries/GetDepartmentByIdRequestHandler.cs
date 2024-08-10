@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Sales.Backoffice.Dto.Enums;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Requests.Queries;
 using Sales.Backoffice.Dto.Responses;
@@ -25,7 +26,7 @@ public class GetDepartmentByIdRequestHandler(ApplicationDbContext dbContext, ILo
             return new OkObjectResult(new GetDepartmentByIdResponse()
             {
                 Id = department.Id,
-                DepartmentTypeId = (int)department.DepartmentType,
+                DepartmentType = (DepartmentTypeDto)department.DepartmentType,
                 MaxAcceptableEmployees = department.MaxAcceptableEmployees,
                 Description = department.DepartmentType.ToString(),
                 SalaryBase = department.EmployeeBaseSalary,

@@ -20,7 +20,7 @@ public class CreateDepartmentRequestHandler(ApplicationDbContext dbContext, ILog
         {
             var departmentType = (DepartmentType)request.DepartmentType;
 
-            var isDepartmentAlreadyCreated = _dbContext.Departments.SingleOrDefaultAsync(x => x.DepartmentType == departmentType);
+            var isDepartmentAlreadyCreated = await _dbContext.Departments.SingleOrDefaultAsync(x => x.DepartmentType == departmentType);
             if (isDepartmentAlreadyCreated is not null)
                 return new BadRequestObjectResult("You're trying to create a department that already exist!");
 
