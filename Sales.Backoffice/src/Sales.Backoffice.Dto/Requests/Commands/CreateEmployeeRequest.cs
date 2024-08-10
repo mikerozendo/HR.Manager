@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Sales.Backoffice.Dto.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Sales.Backoffice.Dto.Requests.Commands;
@@ -26,9 +27,10 @@ public class CreateEmployeeRequest : IRequest<ObjectResult>
     public DateTime ContractStart { get; set; }
 
     [Required]
-    [AllowedValues(0, 1)]
-    public int SexType { get; set; }
+    public SexTypeDto SexType { get; set; }
 
-    //[AllowNull]
+    [Required]
     public List<CreatePersonContactListRequest>? PersonContactList { get; set; } = [];
+
+    public DepartmentTypeDto DepartmentType { get; set; }
 }
