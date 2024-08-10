@@ -27,8 +27,8 @@ public class Agent : RegisterBase
         Adresses = adresses;
     }
 
-    public void WithContacts(List<Contact> Contacts)
+    public void WithContacts(List<Contact> contacts)
     {
-        Contacts = Contacts;
+        Contacts = contacts;
     }
 }

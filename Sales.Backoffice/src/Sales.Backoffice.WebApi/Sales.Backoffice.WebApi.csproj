@@ -36,4 +36,8 @@
     <ProjectReference Include="..\Sales.Backoffice.Dto\Sales.Backoffice.Dto.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+  </ItemGroup>
+
 </Project>

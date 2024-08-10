@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sales.Backoffice.Dto.Requests.Commands;
+using System.Net;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 
+[Authorize]
 [ApiController]
-//[Authorize]
 [Route("api/[controller]")]
+[ProducesResponseType((int)HttpStatusCode.Unauthorized)]
 public class EmployeeController : ControllerBase
 {
     private readonly ILogger<EmployeeController> _logger;
@@ -19,15 +21,10 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] CreateEmployeeRequest request)
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.UnprocessableEntity)]
+    public async Task<IActionResult> Post([FromBody] CreateEmployeeRequest request, CancellationToken cancellationToken)
     {
-        return await _mediator.Send(request);
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> Get()
-    {
-        //var response = await _mediator.Send(request);
-        return NoContent();
+        return await _mediator.Send(request, cancellationToken);
     }
 }

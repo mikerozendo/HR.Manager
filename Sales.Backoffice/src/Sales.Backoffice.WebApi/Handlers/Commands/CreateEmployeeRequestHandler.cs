@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Responses;
 using Sales.Backoffice.WebApi.Models;
@@ -18,13 +19,26 @@ public class CreateEmployeeRequestHandler(ApplicationDbContext dbContext, ILogge
     {
         try
         {
+            var department = await _dbContext.Departments.SingleOrDefaultAsync(
+                x => x.DepartmentType == (DepartmentType)request.DepartmentType
+            );
+
+            if (department is null)
+                return new UnprocessableEntityObjectResult("The specified department does not even exist");
+
+            var doesEmployeeAlreadyExists = await _dbContext.Documents
+                .Where(x => x.Number.Equals(request.Cpf) || x.Number.Equals(request.Rg))
+                .ToListAsync();
+
+            if (doesEmployeeAlreadyExists.Count > 0)
+                return new UnprocessableEntityObjectResult($"The person already exist with Id {doesEmployeeAlreadyExists.First().AgentId}");
+
             var registerDate = DateTime.Now;
             var id = Guid.NewGuid();
             var contacts = request.PersonContactList?.Select(x => new Contact
             {
                 ContactType = (ContactType)x.Type,
                 Id = Guid.NewGuid(),
-                CreatedAt = registerDate,
                 Value = x.Contact
             });
             var documents = new List<Document>()
@@ -32,22 +46,24 @@ public class CreateEmployeeRequestHandler(ApplicationDbContext dbContext, ILogge
                     new (){DocumentType =  DocumentType.Cpf,Number = request.Cpf },
                     new (){DocumentType =  DocumentType.Rg,Number = request.Rg },
                 };
+
             var employee = new Employee()
             {
                 Id = id,
                 LastName = request.LastName,
                 Name = request.Name,
                 CreatedAt = registerDate,
-                //BirthDate = request.BirthDate,
-                BirthDate = DateTime.Now.AddYears(-18),
-                RegistrationCode = Guid.NewGuid().ToString(),
+                BirthDate = DateTime.Now.AddYears(-18).Date,
+                StartDate = DateTime.Now.AddDays(2),
                 IsActive = true,
                 ModifiedAt = registerDate,
-
+                DepartmentId = department.Id,
             };
+
             employee.WithContacts(contacts.ToList());
             employee.WithDocuments(documents.ToList());
-
+            employee.WithCreatedDate(registerDate);
+            employee.WithModifiedDate(registerDate);
 
             await _dbContext.Employees.AddAsync(employee, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);

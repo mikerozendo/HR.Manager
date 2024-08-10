@@ -1,11 +1,14 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Sales.Backoffice.Dto.Enums;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Requests.Queries;
 using System.Net;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
@@ -33,11 +36,11 @@ public class DepartmentController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("/{id}")]
+    [HttpGet("/{type}")]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
     [ProducesResponseType((int)HttpStatusCode.OK)]
-    public async Task<IActionResult> GetById(Guid id)
+    public async Task<IActionResult> GetByType(DepartmentTypeDto type)
     {
-        return await _mediator.Send(new GetDepartmentByIdRequest(id));
+        return await _mediator.Send(new GetDepartmentByTypeRequest(type));
     }
 }
