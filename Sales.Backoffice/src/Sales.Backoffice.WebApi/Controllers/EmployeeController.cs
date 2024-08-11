@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Sales.Backoffice.Dto.Enums;
 using Sales.Backoffice.Dto.Requests.Commands;
 using System.Net;
+using Sales.Backoffice.Dto.Requests.Queries;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 
@@ -26,5 +29,13 @@ public class EmployeeController : ControllerBase
     public async Task<IActionResult> Post([FromBody] CreateEmployeeRequest request, CancellationToken cancellationToken)
     {
         return await _mediator.Send(request, cancellationToken);
+    }
+
+    [HttpGet("get-by-department/{departmentType}")]
+    [ProducesResponseType((int)HttpStatusCode.OK)]
+    [ProducesResponseType((int)HttpStatusCode.UnprocessableEntity)]
+    public async Task<IActionResult> GetByDepartment([FromRoute] DepartmentTypeDto departmentType,CancellationToken cancellationToken)
+    {
+        return await _mediator.Send(new GetEmployeesByDepartmentType(departmentType), cancellationToken);
     }
 }
