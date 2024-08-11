@@ -2,8 +2,8 @@
 
 namespace Sales.Backoffice.WebApi.Models;
 
-public class Contact : RegisterBase
+public class Contact : AssignedToAnAgent
 {
     public ContactType ContactType { get; set; }
-    public string ContactAdress { get; set; }
+    public string Value { get; set; }
 }

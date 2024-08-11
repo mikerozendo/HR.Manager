@@ -5,7 +5,6 @@ using Sales.Backoffice.Application.HttpClients;
 using Sales.Backoffice.Application.Services;
 using Sales.Backoffice.Web;
 using Sales.Backoffice.Web.Configuration;
-using Sales.Backoffice.Web.Repositories;
 using System.Security.Cryptography.X509Certificates;
 
 internal class Program
@@ -20,10 +19,10 @@ internal class Program
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddControllersWithViews();
         builder.Services.AddTransient<AuthenticationHandler>();
-        builder.Services.AddScoped<IBuyerService, BuyerService>();
+        builder.Services.AddScoped<IEmployeeService, EmployeeService>();
         
         builder.Services
-         .AddRefitClient<IBuyerHttpClient>()
+         .AddRefitClient<IEmployeeHttpClient>()
          .AddHttpMessageHandler<AuthenticationHandler>()
          .ConfigureHttpClient(c => c.BaseAddress = new Uri(configuration.WebServiceUrls.SalesBackofficeWebApi));
 

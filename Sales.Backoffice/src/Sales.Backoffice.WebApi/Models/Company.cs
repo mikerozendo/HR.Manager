@@ -1,5 +1,8 @@
-﻿namespace Sales.Backoffice.WebApi.Models;
+﻿using Sales.Backoffice.WebApi.Models.Enums;
 
-public class Company : Person
+namespace Sales.Backoffice.WebApi.Models;
+
+public class Company : Agent
 {
+    public Company() : base(AgentType.Company) { }
 }

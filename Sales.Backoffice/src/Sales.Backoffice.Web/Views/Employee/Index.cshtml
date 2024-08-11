@@ -1,0 +1,33 @@
+﻿@using Sales.Backoffice.Dto.Responses
+@* @model List<CreateEmployeesResponse> *@
+@{
+    ViewData["Title"] = "Employees";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Employees</h5>
+    </div>
+    <div class="card-body">
+        <div class="text-end">
+            <a class="text-end btn btn-sm btn-primary" asp-controller="Employee" asp-action="Create">New</a>
+        </div>
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+@*                     @foreach (var employee in Model)
+                    {
+                        <td>@employee.Name</td>
+                        <td>@employee.LastName</td>
+                    } *@
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
