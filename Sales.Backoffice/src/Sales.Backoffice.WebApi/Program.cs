@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Sales.Backoffice.Repository;
 using Sales.Backoffice.WebApi.Configuration;
-using Sales.Backoffice.WebApi.Repositories;
 
 
 var builder = WebApplication.CreateBuilder(args);

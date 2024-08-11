@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Responses;
+using Sales.Backoffice.Model.Enums;
+using Sales.Backoffice.Repository;
 using Sales.Backoffice.WebApi.Mappers;
-using Sales.Backoffice.WebApi.Models.Enums;
-using Sales.Backoffice.WebApi.Repositories;
 
 namespace Sales.Backoffice.WebApi.Handlers.Commands;
 

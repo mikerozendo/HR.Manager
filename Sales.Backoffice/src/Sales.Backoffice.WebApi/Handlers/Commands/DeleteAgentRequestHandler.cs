@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.Dto.Requests.Commands;
-using Sales.Backoffice.WebApi.Repositories;
+using Sales.Backoffice.Repository;
 
 namespace Sales.Backoffice.WebApi.Handlers.Commands;
 

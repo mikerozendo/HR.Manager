@@ -1,6 +1,6 @@
 ﻿using Sales.Backoffice.Dto.Requests.Commands;
-using Sales.Backoffice.WebApi.Models;
-using Sales.Backoffice.WebApi.Models.Enums;
+using Sales.Backoffice.Model.Enums;
+using Sales.Backoffice.Model;
 
 namespace Sales.Backoffice.WebApi.Mappers;
 

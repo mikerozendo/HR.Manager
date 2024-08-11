@@ -1,12 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Sales.Backoffice.Dto.Enums;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Requests.Queries;
 using Sales.Backoffice.Dto.Responses;
-using Sales.Backoffice.WebApi.Models.Enums;
-using Sales.Backoffice.WebApi.Repositories;
+using Sales.Backoffice.Model.Enums;
+using Sales.Backoffice.Repository;
 
 namespace Sales.Backoffice.WebApi.Handlers.Queries;
 
