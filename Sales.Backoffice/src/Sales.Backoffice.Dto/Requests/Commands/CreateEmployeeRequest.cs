@@ -15,10 +15,7 @@ public class CreateEmployeeRequest : IRequest<ObjectResult>
     public string LastName { get; set; }
 
     [Required]
-    public string Rg { get; set; }
-
-    [Required]
-    public string Cpf { get; set; }
+    public List<CreateDocumentRequest> DocumentList { get; set; } = [];
 
     [Required]
     public DateTime BirthDate { get; set; }

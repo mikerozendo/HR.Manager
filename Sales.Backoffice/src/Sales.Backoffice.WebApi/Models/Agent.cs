@@ -3,15 +3,14 @@
 namespace Sales.Backoffice.WebApi.Models;
 
 
-public class Agent : RegisterBase
+public abstract class Agent : RegisterBase
 {
-    public AgentType PersonType { get; set; }
-    public List<Document> Documents { get; set; } = [];
-    public List<Adress> Adresses { get; set; } = [];
-    public List<Contact> Contacts { get; set; } = [];
+    public AgentType PersonType { get; protected set; }
+    public List<Document> Documents { get; protected set; } = [];
+    public List<Adress> Adresses { get; protected set; } = [];
+    public List<Contact> Contacts { get; protected set; } = [];
 
-    public Agent() { }
-    public Agent(AgentType personType)
+    protected Agent(AgentType personType)
     {
         PersonType = personType;
     }

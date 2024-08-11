@@ -18,7 +18,7 @@ public class AgentController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpDelete("/{id}")]
+    [HttpDelete("{id}")]
     [ProducesResponseType((int)HttpStatusCode.BadRequest)]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<IActionResult> Delete(Guid id)

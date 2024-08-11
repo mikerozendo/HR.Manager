@@ -36,7 +36,7 @@ public class DepartmentController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("/{type}")]
+    [HttpGet("{type}")]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
     [ProducesResponseType((int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetByType(DepartmentTypeDto type)

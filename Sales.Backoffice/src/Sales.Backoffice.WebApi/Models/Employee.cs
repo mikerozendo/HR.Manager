@@ -4,11 +4,22 @@ public class Employee : IndividualPerson
 {
     public Department Department { get; set; }
     public Guid DepartmentId { get; set; }
-    public bool IsActive { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime? EndDate { get; set; }
+    public bool IsActive
+    {
+        get
+        {
+            if (EndDate.HasValue && EndDate.Value.Date <= DateTime.Now.Date)
+                return false;
 
-    public void WithDepartment(Department department)
+            return true;
+        }
+    }
+
+    public Employee() : base() { }
+
+    public void AssignToADepartment(Department department)
     {
         Department = department;
     }

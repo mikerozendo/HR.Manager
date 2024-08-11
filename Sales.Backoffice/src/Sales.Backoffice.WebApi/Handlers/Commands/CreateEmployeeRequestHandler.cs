@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Responses;
-using Sales.Backoffice.WebApi.Models;
+using Sales.Backoffice.WebApi.Mappers;
 using Sales.Backoffice.WebApi.Models.Enums;
 using Sales.Backoffice.WebApi.Repositories;
 
@@ -26,52 +26,22 @@ public class CreateEmployeeRequestHandler(ApplicationDbContext dbContext, ILogge
             if (department is null)
                 return new UnprocessableEntityObjectResult("The specified department does not even exist");
 
-            var doesEmployeeAlreadyExists = await _dbContext.Documents
-                .Where(x => x.Number.Equals(request.Cpf) || x.Number.Equals(request.Rg))
-                .ToListAsync();
+            var documentNumbers = request.DocumentList.Select(x => x.Number).ToList();
+            var doesEmployeeAlreadyExists = await _dbContext.Documents.AnyAsync(x => documentNumbers.Contains(x.Number));
+            if (doesEmployeeAlreadyExists)
+                return new UnprocessableEntityObjectResult($"The person already exist");
 
-            if (doesEmployeeAlreadyExists.Count > 0)
-                return new UnprocessableEntityObjectResult($"The person already exist with Id {doesEmployeeAlreadyExists.First().AgentId}");
 
-            var registerDate = DateTime.Now;
-            var id = Guid.NewGuid();
-            var contacts = request.PersonContactList?.Select(x => new Contact
-            {
-                ContactType = (ContactType)x.Type,
-                Id = Guid.NewGuid(),
-                Value = x.Contact
-            });
-            var documents = new List<Document>()
-                {
-                    new (){DocumentType =  DocumentType.Cpf,Number = request.Cpf },
-                    new (){DocumentType =  DocumentType.Rg,Number = request.Rg },
-                };
-
-            var employee = new Employee()
-            {
-                Id = id,
-                LastName = request.LastName,
-                Name = request.Name,
-                CreatedAt = registerDate,
-                BirthDate = DateTime.Now.AddYears(-18).Date,
-                StartDate = DateTime.Now.AddDays(2),
-                IsActive = true,
-                ModifiedAt = registerDate,
-                DepartmentId = department.Id,
-            };
-
-            employee.WithContacts(contacts.ToList());
-            employee.WithDocuments(documents.ToList());
-            employee.WithCreatedDate(registerDate);
-            employee.WithModifiedDate(registerDate);
+            var employee = request.ToModel(department);
+            employee.CreatedAt = DateTime.Now;
 
             await _dbContext.Employees.AddAsync(employee, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
-            return new OkObjectResult(new EntityCreatedResponse(id));
+            return new OkObjectResult(new EntityCreatedResponse(employee.Id));
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "[Handler]", nameof(CreateEmployeeRequestHandler));
+            _logger.LogError(ex, "An error occurred while trying to create a new employee");
             throw;
         }
     }
