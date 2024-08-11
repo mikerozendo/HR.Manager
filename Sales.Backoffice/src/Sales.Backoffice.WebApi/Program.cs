@@ -1,35 +1,46 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using static System.Net.WebRequestMethods;
+using Microsoft.EntityFrameworkCore;
+using Sales.Backoffice.WebApi.Configuration;
+using Sales.Backoffice.WebApi.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+
+var envConfig = builder.Configuration.Get<EnvironmentConfiguration>();
+
+
+builder.Services.AddDbContextPool<ApplicationDbContext>(
+    opt => opt.UseSqlServer(envConfig.ConnectionStrings.SqlServer)
+    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+    .UseLazyLoadingProxies(false)
+    .UseChangeTrackingProxies(false, false)
+    .EnableThreadSafetyChecks(false));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
     {
-        opt.Authority = "https://localhost:5001/";
-        opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-        {
-            ValidateAudience = false
-        };
+        opt.Authority = envConfig.IdentityConfig.Url; 
+        opt.Audience = "sales_backoffice_webapi";
+        opt.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
     });
 
-builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("ApiScope", policy =>
-    {
-        policy.RequireAuthenticatedUser();
-        policy.RequireClaim("scope", "sales_backoffice_web");
-    });
+//builder.Services.AddAuthorizationBuilder()
+//    .AddPolicy("ApiScope", policy =>
+//    {
+//        policy.RequireAuthenticatedUser();
+//        policy.RequireClaim(
+//            "scope",
+//            envConfig.IdentityConfig.Scope);
+//    });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -41,6 +52,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers()/*.RequireAuthorization("ApiScope")*/;
+});
 
 app.Run();

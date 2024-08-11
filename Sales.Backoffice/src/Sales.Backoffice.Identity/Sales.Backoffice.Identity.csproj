@@ -7,6 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="wwwroot\css\quatz.css" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Bogus" Version="35.6.0" />
 		<PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="7.0.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.3" />

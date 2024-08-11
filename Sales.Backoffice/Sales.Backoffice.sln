@@ -11,11 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Web", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Identity", "src\Sales.Backoffice.Identity\Sales.Backoffice.Identity.csproj", "{4C921E0F-1661-47DD-AC12-5EB7C08A5719}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Models", "src\Sales.Backoffice.Models\Sales.Backoffice.Models.csproj", "{F56F35E8-67F4-4196-92FB-E8C02631F7BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Application", "src\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj", "{7E743B87-C1CF-40FA-B6AF-BB67E700F445}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Repository", "src\Sales.Backoffice.Repository\Sales.Backoffice.Repository.csproj", "{A18C3E9E-379A-4B4D-961F-DF0E22F4B54B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Application", "src\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj", "{7E743B87-C1CF-40FA-B6AF-BB67E700F445}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Backoffice.Dto", "src\Sales.Backoffice.Dto\Sales.Backoffice.Dto.csproj", "{26941609-733A-4872-8C2B-827A2CEEB400}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,18 +37,14 @@ Global
 		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F56F35E8-67F4-4196-92FB-E8C02631F7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F56F35E8-67F4-4196-92FB-E8C02631F7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F56F35E8-67F4-4196-92FB-E8C02631F7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F56F35E8-67F4-4196-92FB-E8C02631F7BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A18C3E9E-379A-4B4D-961F-DF0E22F4B54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A18C3E9E-379A-4B4D-961F-DF0E22F4B54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A18C3E9E-379A-4B4D-961F-DF0E22F4B54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A18C3E9E-379A-4B4D-961F-DF0E22F4B54B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E743B87-C1CF-40FA-B6AF-BB67E700F445}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E743B87-C1CF-40FA-B6AF-BB67E700F445}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E743B87-C1CF-40FA-B6AF-BB67E700F445}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E743B87-C1CF-40FA-B6AF-BB67E700F445}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26941609-733A-4872-8C2B-827A2CEEB400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26941609-733A-4872-8C2B-827A2CEEB400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26941609-733A-4872-8C2B-827A2CEEB400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26941609-733A-4872-8C2B-827A2CEEB400}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

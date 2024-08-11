@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Sales.Backoffice.Identity.Configuration;
 using Sales.Backoffice.Identity.Data;
 using Sales.Backoffice.Identity.Models;
@@ -28,15 +29,14 @@ internal static class WebApplicationExtensions
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
-
-                // see https://docs.duendesoftware.com/identityserver/v6/fundamentals/resources/
                 options.EmitStaticAudienceClaim = true;
             })
+            .AddInMemoryApiResources(IdentityConfiguration.ApiResources(envConfig))
             .AddInMemoryIdentityResources(IdentityConfiguration.IdentityResources)
-            .AddInMemoryApiScopes(IdentityConfiguration.GetApiScopes())
+            .AddInMemoryApiScopes(IdentityConfiguration.GetApiScopes(envConfig))
             .AddInMemoryClients(builder.GetClients(envConfig))
             .AddAspNetIdentity<ApplicationUser>();
-
+       
         return builder.Build();
     }
 

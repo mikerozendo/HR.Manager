@@ -1,50 +1,56 @@
 ﻿namespace Sales.Backoffice.Identity.Configuration;
 
-public class EnvironmentConfiguration
+public record EnvironmentConfiguration
 {
-    public Serilog Serilog { get; set; }
-    public Clients Clients { get; set; }
-    public Connectionstrings ConnectionStrings { get; set; }
-    public Applicationlocalconfig ApplicationLocalConfig { get; set; }
+    public Serilog Serilog { get; init; }
+    public Clients Clients { get; init; }
+    public Connectionstrings ConnectionStrings { get; init; }
+    public Applicationlocalconfig ApplicationLocalConfig { get; init; }
+    public Scopes Scopes { get; init; }
 }
 
-public class Serilog
+public record Scopes
 {
-    public Minimumlevel MinimumLevel { get; set; }
+    public string SalesBackofficeWebApi { get; init; }
 }
 
-public class Minimumlevel
+public record Serilog
 {
-    public string Default { get; set; }
-    public Override Override { get; set; }
+    public Minimumlevel MinimumLevel { get; init; }
 }
 
-public class Override
+public record Minimumlevel
 {
-    public string Microsoft { get; set; }
-    public string MicrosoftHostingLifetime { get; set; }
-    public string MicrosoftAspNetCoreAuthentication { get; set; }
-    public string System { get; set; }
+    public string Default { get; init; }
+    public Override Override { get; init; }
 }
 
-public class Clients
+public record Override
 {
-    public Salesbackoffice SalesBackoffice { get; set; }
+    public string Microsoft { get; init; }
+    public string MicrosoftHostingLifetime { get; init; }
+    public string MicrosoftAspNetCoreAuthentication { get; init; }
+    public string System { get; init; }
 }
 
-public class Salesbackoffice
+public record Clients
 {
-    public string CliendId { get; set; }
-    public string ClientSecret { get; set; }
+    public Salesbackoffice SalesBackoffice { get; init; }
 }
 
-public class Connectionstrings
+public record Salesbackoffice
 {
-    public string SqlServer { get; set; }
+    public string CliendId { get; init; }
+    public string ClientSecret { get; init; }
 }
 
-public class Applicationlocalconfig
+public record Connectionstrings
 {
-    public bool ShouldSeedRoles { get; set; }
-    public bool ShouldSeedUsersWithClaims { get; set; }
+    public string SqlServer { get; init; }
+}
+
+public record Applicationlocalconfig
+{
+    public bool ShouldSeedRoles { get; init; }
+    public bool ShouldSeedUsersWithClaims { get; init; }
 }
