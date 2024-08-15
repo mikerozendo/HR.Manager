@@ -1,15 +1,16 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.Dto.Requests.Queries;
 using Sales.Backoffice.Model.Enums;
 using Sales.Backoffice.Repository;
+using Sales.Backoffice.Repository.Internal.Interfaces;
 
 namespace Sales.Backoffice.WebApi.Handlers.Queries;
 
 public class GetEmployeesByDepartmentTypeRequestHandler : IRequestHandler<GetEmployeesByDepartmentType, ObjectResult>
 {
     private readonly ApplicationDbContext _context;
+    private readonly IEmployeeRepository _employeeRepository;
     public GetEmployeesByDepartmentTypeRequestHandler(ApplicationDbContext context)
     {
         _context = context;
@@ -19,9 +20,7 @@ public class GetEmployeesByDepartmentTypeRequestHandler : IRequestHandler<GetEmp
     {
         try
         {
-            var employees = await _context.Employees
-                 .Where(x => x.Department.DepartmentType == (DepartmentType)request.Type)
-                 .ToListAsync();
+            var employees = await _employeeRepository.GetByDepartmentAsync((DepartmentType)request.Type);
 
             if (employees.Count == 0)
                 return new NotFoundObjectResult("There aren't employees for this department yet.");
@@ -30,7 +29,6 @@ public class GetEmployeesByDepartmentTypeRequestHandler : IRequestHandler<GetEmp
         }
         catch (Exception ex)
         {
-
             throw;
         }
     }

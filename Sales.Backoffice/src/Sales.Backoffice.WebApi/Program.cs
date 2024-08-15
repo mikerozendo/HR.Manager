@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.Repository;
+using Sales.Backoffice.Repository.Internal;
+using Sales.Backoffice.Repository.Internal.Interfaces;
 using Sales.Backoffice.WebApi.Configuration;
 
 
@@ -11,6 +13,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IAgentRepository, AgentRepository>();
+builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
 
 var envConfig = builder.Configuration.Get<EnvironmentConfiguration>();
 
@@ -30,14 +37,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         opt.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
     });
 
-//builder.Services.AddAuthorizationBuilder()
-//    .AddPolicy("ApiScope", policy =>
-//    {
-//        policy.RequireAuthenticatedUser();
-//        policy.RequireClaim(
-//            "scope",
-//            envConfig.IdentityConfig.Scope);
-//    });
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("ApiScope", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim(
+            "scope",
+            envConfig.IdentityConfig.Scope);
+    });
 
 var app = builder.Build();
 
@@ -54,7 +61,7 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllers()/*.RequireAuthorization("ApiScope")*/;
+    endpoints.MapControllers().RequireAuthorization("ApiScope");
 });
 
 app.Run();

@@ -1,18 +1,22 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Model;
 using Sales.Backoffice.Model.Enums;
-using Sales.Backoffice.Repository;
+using Sales.Backoffice.Repository.Internal.Interfaces;
 
 namespace Sales.Backoffice.WebApi.Handlers.Commands;
 
-public class CreateDepartmentRequestHandler(ApplicationDbContext dbContext, ILogger<CreateDepartmentRequestHandler> logger)
-    : IRequestHandler<CreateDepartmentRequest, ObjectResult>
+public class CreateDepartmentRequestHandler : IRequestHandler<CreateDepartmentRequest, ObjectResult>
 {
-    private readonly ApplicationDbContext _dbContext = dbContext;
-    private readonly ILogger<CreateDepartmentRequestHandler> _logger = logger;
+    private readonly ILogger<CreateDepartmentRequestHandler> _logger;
+    private readonly IDepartmentRepository _departmentRepository;
+
+    public CreateDepartmentRequestHandler(ILogger<CreateDepartmentRequestHandler> logger, IDepartmentRepository departmentRepository)
+    {
+        _logger = logger;
+        _departmentRepository = departmentRepository;
+    }
 
     public async Task<ObjectResult> Handle(CreateDepartmentRequest request, CancellationToken cancellationToken)
     {
@@ -20,7 +24,7 @@ public class CreateDepartmentRequestHandler(ApplicationDbContext dbContext, ILog
         {
             var departmentType = (DepartmentType)request.DepartmentType;
 
-            var isDepartmentAlreadyCreated = await _dbContext.Departments.SingleOrDefaultAsync(x => x.DepartmentType == departmentType);
+            var isDepartmentAlreadyCreated = await _departmentRepository.GetByTypeAsync(departmentType);
             if (isDepartmentAlreadyCreated is not null)
                 return new BadRequestObjectResult("You're trying to create a department that already exist!");
 
@@ -33,8 +37,7 @@ public class CreateDepartmentRequestHandler(ApplicationDbContext dbContext, ILog
                 MaxAcceptableEmployees = request.MaxAcceptableEmployees,
             };
 
-            await _dbContext.Departments.AddAsync(departmentModel);
-            await _dbContext.SaveChangesAsync();
+            await _departmentRepository.CreateAsync(departmentModel);
             return new OkObjectResult("The department has been created sucessfully");
         }
         catch (Exception ex)

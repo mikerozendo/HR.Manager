@@ -1,42 +1,51 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Responses;
 using Sales.Backoffice.Model.Enums;
-using Sales.Backoffice.Repository;
+using Sales.Backoffice.Repository.Internal.Interfaces;
 using Sales.Backoffice.WebApi.Mappers;
 
 namespace Sales.Backoffice.WebApi.Handlers.Commands;
 
-public class CreateEmployeeRequestHandler(ApplicationDbContext dbContext, ILogger<CreateEmployeeRequestHandler> logger)
-    : IRequestHandler<CreateEmployeeRequest, ObjectResult>
+public class CreateEmployeeRequestHandler : IRequestHandler<CreateEmployeeRequest, ObjectResult>
 {
-    private readonly ApplicationDbContext _dbContext = dbContext;
-    private readonly ILogger<CreateEmployeeRequestHandler> _logger = logger;
+
+    private readonly IEmployeeRepository _employeeRepository;
+    private readonly IDepartmentRepository _departmentRepository;
+    private readonly IDocumentRepository _documentRepository;
+    private readonly ILogger<CreateEmployeeRequestHandler> _logger;
+
+    public CreateEmployeeRequestHandler(
+        ILogger<CreateEmployeeRequestHandler> logger,
+        IEmployeeRepository employeeRepository, 
+        IDepartmentRepository departmentRepository,
+        IDocumentRepository documentRepository)
+    {
+        _employeeRepository = employeeRepository;
+        _departmentRepository = departmentRepository;
+        _documentRepository = documentRepository;
+        _logger = logger;
+    }
 
     public async Task<ObjectResult> Handle(CreateEmployeeRequest request, CancellationToken cancellationToken)
     {
         try
         {
-            var department = await _dbContext.Departments.SingleOrDefaultAsync(
-                x => x.DepartmentType == (DepartmentType)request.DepartmentType
-            );
-
+            var department = await _departmentRepository.GetByTypeAsync((DepartmentType)request.DepartmentType);
             if (department is null)
                 return new UnprocessableEntityObjectResult("The specified department does not even exist");
 
-            var documentNumbers = request.DocumentList.Select(x => x.Number).ToList();
-            var doesEmployeeAlreadyExists = await _dbContext.Documents.AnyAsync(x => documentNumbers.Contains(x.Number));
-            if (doesEmployeeAlreadyExists)
+            var documentNumbers = request.DocumentList.Select(x => x.Number).ToArray();
+            var doesEmployeeAlreadyExists = await _documentRepository.GetDocumentsByNumbers(documentNumbers);
+            if (doesEmployeeAlreadyExists.Count > 0)
                 return new UnprocessableEntityObjectResult($"The person already exist");
 
 
             var employee = request.ToModel(department);
             employee.CreatedAt = DateTime.Now;
 
-            await _dbContext.Employees.AddAsync(employee, cancellationToken);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            await _employeeRepository.CreateAsync(employee);
             return new OkObjectResult(new EntityCreatedResponse(employee.Id));
         }
         catch (Exception ex)
