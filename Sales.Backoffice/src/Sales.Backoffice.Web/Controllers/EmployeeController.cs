@@ -1,38 +1,38 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Sales.Backoffice.Application.Services;
-using Sales.Backoffice.Dto.Requests.Commands;
+//using Microsoft.AspNetCore.Authorization;
+//using Microsoft.AspNetCore.Mvc;
+//using Sales.Backoffice.Application.Services;
+//using Sales.Backoffice.Dto.Requests.Commands;
 
-namespace Sales.Backoffice.Web.Controllers;
+//namespace Sales.Backoffice.Web.Controllers;
 
-[Authorize]
-public class EmployeeController : Controller
-{
-    private readonly ILogger<EmployeeController> _logger;
-    private readonly IEmployeeService _employeeService;
-    public EmployeeController(ILogger<EmployeeController> logger, IEmployeeService employeeService)
-    {
-        _logger = logger;
-        _employeeService = employeeService;
-    }
+//[Authorize]
+//public class EmployeeController : Controller
+//{
+//    private readonly ILogger<EmployeeController> _logger;
+//    private readonly IEmployeeService _employeeService;
+//    public EmployeeController(ILogger<EmployeeController> logger, IEmployeeService employeeService)
+//    {
+//        _logger = logger;
+//        _employeeService = employeeService;
+//    }
 
-    [HttpGet]
-    public async Task<IActionResult> Index()
-    {
-        //var list = await _employeeService.GetAsync();
-        return View(new List<object>());
-    }
+//    [HttpGet]
+//    public async Task<IActionResult> Index()
+//    {
+//        //var list = await _employeeService.GetAsync();
+//        return View(new List<object>());
+//    }
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Post([FromForm] CreateEmployeeRequest request)
-    {
-        var response = await _employeeService.PostAsync(request);
-        return CreatedAtAction(nameof(Index), response.Content);
-    }
+//    [HttpPost]
+//    [ValidateAntiForgeryToken]
+//    public async Task<IActionResult> Post([FromForm] CreateEmployeeRequest request)
+//    {
+//        var response = await _employeeService.PostAsync(request);
+//        return CreatedAtAction(nameof(Index), response.Content);
+//    }
 
-    public IActionResult Create()
-    {
-        return View();
-    }
-}
+//    public IActionResult Create()
+//    {
+//        return View();
+//    }
+//}
