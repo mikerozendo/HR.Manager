@@ -13,7 +13,7 @@ public class DocumentRepository : IDocumentRepository
         _dbContext = dbContext;
     }
 
-    public async Task<List<Document>> GetDocumentsByNumbers(params string[] documents)
+    public async Task<List<Document>> GetDocumentsByNumbersAsync(params string[] documents)
     {
         return await _dbContext.Documents
             .Where(x => documents.Contains(x.Number))

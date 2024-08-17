@@ -38,7 +38,7 @@ public class CreateEmployeeRequestHandler : IRequestHandler<CreateEmployeeReques
                 return new UnprocessableEntityObjectResult("The specified department does not even exist");
 
             var documentNumbers = request.DocumentList.Select(x => x.Number).ToArray();
-            var doesEmployeeAlreadyExists = await _documentRepository.GetDocumentsByNumbers(documentNumbers);
+            var doesEmployeeAlreadyExists = await _documentRepository.GetDocumentsByNumbersAsync(documentNumbers);
             if (doesEmployeeAlreadyExists.Count > 0)
                 return new UnprocessableEntityObjectResult($"The person already exist");
 
