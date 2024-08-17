@@ -22,7 +22,7 @@ public class CreateDepartmentRequestHandlerTests
     }
 
     [Fact]
-    public async Task Handler_DepartmentAlreadyExists_ReturnsBadRequest()
+    public async Task Handle_DepartmentAlreadyExists_ReturnsBadRequest()
     {
         // Arrange
         var command = new CreateDepartmentRequest() { DepartmentType = 0, MaxAcceptableEmployees = 2, SalaryBase = 5000 };
@@ -42,7 +42,7 @@ public class CreateDepartmentRequestHandlerTests
     }
 
     [Fact]
-    public async Task Handler_DepartmentDoesNotExist_ReturnsOk()
+    public async Task Handle_DepartmentDoesNotExist_ReturnsOk()
     {
         // Arrange
         var command = new CreateDepartmentRequest() { DepartmentType = 0, MaxAcceptableEmployees = 2, SalaryBase = 5000 };
@@ -63,7 +63,7 @@ public class CreateDepartmentRequestHandlerTests
     }
 
     [Fact]
-    public async Task Handler_AttemptToQueryAgainstDb_ThrowsException()
+    public async Task Handle_AttemptToQueryAgainstDb_ThrowsException()
     {
         // Arrange
         var command = new CreateDepartmentRequest() { DepartmentType = 0, MaxAcceptableEmployees = 2, SalaryBase = 5000 };
