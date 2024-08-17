@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Requests.Queries;
 using Sales.Backoffice.Dto.Responses;
 using Sales.Backoffice.Model.Enums;
 using Sales.Backoffice.Repository.Internal.Interfaces;
 
-namespace Sales.Backoffice.WebApi.Handlers.Queries;
+namespace Sales.Backoffice.Application.Handlers.Queries;
 
 public class GetDepartmentByTypeRequestHandler : IRequestHandler<GetDepartmentByTypeRequest, ObjectResult>
 {
@@ -14,7 +15,7 @@ public class GetDepartmentByTypeRequestHandler : IRequestHandler<GetDepartmentBy
     private readonly ILogger<GetDepartmentByTypeRequestHandler> _logger;
 
     public GetDepartmentByTypeRequestHandler(
-        IDepartmentRepository departmentRepository, 
+        IDepartmentRepository departmentRepository,
         ILogger<GetDepartmentByTypeRequestHandler> logger)
     {
         _departmentRepository = departmentRepository;

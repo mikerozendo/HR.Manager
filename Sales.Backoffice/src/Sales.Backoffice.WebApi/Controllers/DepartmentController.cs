@@ -8,7 +8,7 @@ using System.Net;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 
-[Authorize]
+//[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 [ProducesResponseType((int)HttpStatusCode.Unauthorized)]

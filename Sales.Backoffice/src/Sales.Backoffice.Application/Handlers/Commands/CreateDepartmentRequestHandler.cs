@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Model;
 using Sales.Backoffice.Model.Enums;
 using Sales.Backoffice.Repository.Internal.Interfaces;
 
-namespace Sales.Backoffice.WebApi.Handlers.Commands;
+namespace Sales.Backoffice.Application.Handlers.Commands;
 
 public class CreateDepartmentRequestHandler : IRequestHandler<CreateDepartmentRequest, ObjectResult>
 {

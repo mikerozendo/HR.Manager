@@ -2,7 +2,7 @@
 using Sales.Backoffice.Model;
 using Sales.Backoffice.Model.Enums;
 
-namespace Sales.Backoffice.WebApi.Mappers;
+namespace Sales.Backoffice.Application.Mappers;
 
 public static class ContactMapper
 {

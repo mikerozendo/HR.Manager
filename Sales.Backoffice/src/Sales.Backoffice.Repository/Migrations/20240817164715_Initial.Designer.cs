@@ -12,7 +12,7 @@ using Sales.Backoffice.Repository;
 namespace Sales.Backoffice.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240817160812_Initial")]
+    [Migration("20240817164715_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Sales.Backoffice.Application.Mappers;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Responses;
 using Sales.Backoffice.Model.Enums;
 using Sales.Backoffice.Repository.Internal.Interfaces;
-using Sales.Backoffice.WebApi.Mappers;
 
-namespace Sales.Backoffice.WebApi.Handlers.Commands;
+namespace Sales.Backoffice.Application.Handlers.Commands;
 
 public class CreateEmployeeRequestHandler : IRequestHandler<CreateEmployeeRequest, ObjectResult>
 {
@@ -18,7 +19,7 @@ public class CreateEmployeeRequestHandler : IRequestHandler<CreateEmployeeReques
 
     public CreateEmployeeRequestHandler(
         ILogger<CreateEmployeeRequestHandler> logger,
-        IEmployeeRepository employeeRepository, 
+        IEmployeeRepository employeeRepository,
         IDepartmentRepository departmentRepository,
         IDocumentRepository documentRepository)
     {

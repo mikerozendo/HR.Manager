@@ -2,7 +2,7 @@
 using Sales.Backoffice.Model.Enums;
 using Sales.Backoffice.Model;
 
-namespace Sales.Backoffice.WebApi.Mappers;
+namespace Sales.Backoffice.Application.Mappers;
 
 public static class DocumentMapper
 {

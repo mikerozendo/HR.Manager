@@ -5,7 +5,7 @@ using Sales.Backoffice.Model.Enums;
 using Sales.Backoffice.Repository;
 using Sales.Backoffice.Repository.Internal.Interfaces;
 
-namespace Sales.Backoffice.WebApi.Handlers.Queries;
+namespace Sales.Backoffice.Application.Handlers.Queries;
 
 public class GetEmployeesByDepartmentTypeRequestHandler : IRequestHandler<GetEmployeesByDepartmentType, ObjectResult>
 {
@@ -25,7 +25,7 @@ public class GetEmployeesByDepartmentTypeRequestHandler : IRequestHandler<GetEmp
             if (employees.Count == 0)
                 return new NotFoundObjectResult("There aren't employees for this department yet.");
 
-            throw new NotImplementedException();    
+            throw new NotImplementedException();
         }
         catch (Exception ex)
         {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Repository.Internal.Interfaces;
 
-namespace Sales.Backoffice.WebApi.Handlers.Commands;
+namespace Sales.Backoffice.Application.Handlers.Commands;
 
 public class DeleteAgentRequestHandler : IRequestHandler<DeleteAgentRequest, ObjectResult>
 {
@@ -19,7 +19,7 @@ public class DeleteAgentRequestHandler : IRequestHandler<DeleteAgentRequest, Obj
         if (agentInDb is null)
             return new BadRequestObjectResult("Attempt to delete a entity that does not even exist");
 
-        await _agentRepository.DeleteAsync(agentInDb); 
+        await _agentRepository.DeleteAsync(agentInDb);
         return new OkObjectResult($"Success to delete entity with Id {agentInDb.Id}");
     }
 }
