@@ -26,6 +26,6 @@ public class Employee : IndividualPerson
 
     public void WithDocuments(List<Document> documents)
     {
-        throw new NotImplementedException();
+        Documents = documents;
     }
 }
