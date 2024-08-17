@@ -45,9 +45,9 @@ public class CreateEmployeeRequestHandlerTests
             SexType = SexTypeDto.Male
         };
 
-        var handler = new CreateEmployeeRequestHandler(_logger, 
-            new Mock<IEmployeeRepository>().Object, 
-            departmentRepositoryMock.Object, 
+        var handler = new CreateEmployeeRequestHandler(_logger,
+            new Mock<IEmployeeRepository>().Object,
+            departmentRepositoryMock.Object,
             new Mock<IDocumentRepository>().Object);
 
 
@@ -65,7 +65,7 @@ public class CreateEmployeeRequestHandlerTests
         //Arrange 
         var departmentRepositoryMock = new Mock<IDepartmentRepository>();
         departmentRepositoryMock.Setup(x => x.GetByTypeAsync(It.IsAny<DepartmentType>()))
-            .ReturnsAsync(new Department() { Id = Guid.NewGuid()});
+            .ReturnsAsync(new Department() { Id = Guid.NewGuid() });
 
         var command = new CreateEmployeeRequest()
         {
@@ -119,7 +119,7 @@ public class CreateEmployeeRequestHandlerTests
 
         var documentRepositoryMock = new Mock<IDocumentRepository>();
         documentRepositoryMock.Setup(x => x.GetDocumentsByNumbersAsync(command.DocumentList.First().Number))
-            .ReturnsAsync(new List<Document> ());
+            .ReturnsAsync(new List<Document>());
 
         var employeeRepositoryMock = new Mock<IEmployeeRepository>();
         employeeRepositoryMock.Setup(x => x.CreateAsync(It.IsAny<Employee>()));
@@ -137,5 +137,46 @@ public class CreateEmployeeRequestHandlerTests
         //Assert
         Assert.True(response.GetType() == typeof(OkObjectResult));
         Assert.True(response.Value.GetType() == typeof(EntityCreatedResponse));
+    }
+
+    [Fact]
+    public async Task Handle_AttemptToSaveEntity_ThrowsException()
+    {
+        //Arrange 
+        var departmentRepositoryMock = new Mock<IDepartmentRepository>();
+        departmentRepositoryMock.Setup(x => x.GetByTypeAsync(It.IsAny<DepartmentType>()))
+            .ReturnsAsync(new Department() { Id = Guid.NewGuid() });
+
+        var command = new CreateEmployeeRequest()
+        {
+            BirthDate = DateTime.Now.AddYears(-18),
+            ContractStart = DateTime.Now.AddDays(5),
+            DepartmentType = DepartmentTypeDto.Financial,
+            DocumentList = new List<CreateDocumentRequest>() { new() { Number = "00.000.000.2", DocumentType = DocumentTypeDto.Rg } },
+            Name = "Michael",
+            LastName = "Roz",
+            PersonContactList = new List<CreatePersonContactListRequest>() { new() { Contact = "xxxx11111xx", ContactType = ContactTypeDto.CellPhone } },
+            SexType = SexTypeDto.Male
+        };
+
+        var documentRepositoryMock = new Mock<IDocumentRepository>();
+        documentRepositoryMock.Setup(x => x.GetDocumentsByNumbersAsync(command.DocumentList.First().Number))
+            .ReturnsAsync(new List<Document>());
+
+        var employeeRepositoryMock = new Mock<IEmployeeRepository>();
+        employeeRepositoryMock.Setup(x => x.CreateAsync(It.IsAny<Employee>())).ThrowsAsync(new Exception("Forced Error"));
+
+        var handler = new CreateEmployeeRequestHandler(_logger,
+            employeeRepositoryMock.Object,
+            departmentRepositoryMock.Object,
+            documentRepositoryMock.Object);
+
+
+        //Act
+        var response = handler.Handle(command, new CancellationToken());
+
+
+        //Assert
+        await Assert.ThrowsAsync<Exception>(async () => await response);
     }
 }
