@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Sales.Backoffice.Repository;
 using Sales.Backoffice.Repository.Internal;
 using Sales.Backoffice.Repository.Internal.Interfaces;
@@ -23,11 +24,15 @@ var envConfig = builder.Configuration.Get<EnvironmentConfiguration>();
 
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(
-    opt => opt.UseSqlServer(envConfig.ConnectionStrings.SqlServer)
+    opt => opt.UseSqlServer(envConfig.ConnectionStrings.SqlServer, 
+        migrations => migrations.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
     .UseLazyLoadingProxies(false)
     .UseChangeTrackingProxies(false, false)
-    .EnableThreadSafetyChecks(false));
+    .EnableThreadSafetyChecks(false)
+    //UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery) //I need to read more about this 
+);
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
