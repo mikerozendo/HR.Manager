@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using Sales.Backoffice.Dto.Enums;
 using Sales.Backoffice.Dto.Requests.Commands;
 using System.Net;

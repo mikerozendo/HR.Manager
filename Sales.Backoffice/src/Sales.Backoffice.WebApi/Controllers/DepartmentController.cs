@@ -8,7 +8,7 @@ using System.Net;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 
-//[Authorize]
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
@@ -28,12 +28,6 @@ public class DepartmentController : ControllerBase
     public async Task<IActionResult> Post([FromBody] CreateDepartmentRequest request)
     {
         return await _mediator.Send(request);
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> Get()
-    {
-        return NoContent();
     }
 
     [HttpGet("{type}")]
