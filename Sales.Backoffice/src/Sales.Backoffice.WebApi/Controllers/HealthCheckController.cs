@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Sales.Backoffice.WebApi.Controllers;
 
 [Authorize]
-[Route("[controller]")]
+[Route("api/health-check")]
 public class HealthCheckController : ControllerBase
 {
     private readonly ILogger<HealthCheckController> _logger;

@@ -8,12 +8,12 @@ namespace Sales.Backoffice.WebApi.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/agents")]
 [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-public class AgentController : ControllerBase
+public class AgentsController : ControllerBase
 {
     private readonly IMediator _mediator;
-    public AgentController(IMediator mediator)
+    public AgentsController(IMediator mediator)
     {
         _mediator = mediator;
     }

@@ -10,7 +10,7 @@ namespace Sales.Backoffice.WebApi.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/employees")]
 [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
 public class EmployeeController : ControllerBase
 {
