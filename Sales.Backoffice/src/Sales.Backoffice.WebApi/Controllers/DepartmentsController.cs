@@ -23,16 +23,16 @@ public class DepartmentsController : ControllerBase
 	[HttpPost]
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status400BadRequest)]
-	public async Task<IActionResult> Post([FromBody] CreateDepartmentRequest request)
+	public async Task<IActionResult> Post([FromBody] CreateDepartmentRequest request, CancellationToken cancellationToken)
 	{
-		return await _mediator.Send(request);
+		return await _mediator.Send(request, cancellationToken);
 	}
 
 	[HttpGet("{type}")]
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
-	public async Task<IActionResult> GetByType(DepartmentTypeDto type)
+	public async Task<IActionResult> GetByType(DepartmentTypeDto type, CancellationToken cancellationToken)
 	{
-		return await _mediator.Send(new GetDepartmentByTypeRequest(type));
+		return await _mediator.Send(new GetDepartmentByTypeRequest(type), cancellationToken);
 	}
 }

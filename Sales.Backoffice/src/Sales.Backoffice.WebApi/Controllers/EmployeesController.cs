@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sales.Backoffice.Dto.Enums;
 using Sales.Backoffice.Dto.Requests.Commands;
-using System.Net;
 using Sales.Backoffice.Dto.Requests.Queries;
 
 namespace Sales.Backoffice.WebApi.Controllers;
@@ -11,29 +10,27 @@ namespace Sales.Backoffice.WebApi.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/employees")]
-[ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 public class EmployeeController : ControllerBase
 {
-    private readonly ILogger<EmployeeController> _logger;
     private readonly IMediator _mediator;
-    public EmployeeController(ILogger<EmployeeController> logger, IMediator mediator)
+    public EmployeeController(IMediator mediator)
     {
-        _logger = logger;
         _mediator = mediator;
     }
 
     [HttpPost]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
-    [ProducesResponseType((int)HttpStatusCode.UnprocessableEntity)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Post([FromBody] CreateEmployeeRequest request, CancellationToken cancellationToken)
     {
         return await _mediator.Send(request, cancellationToken);
     }
 
-    [HttpGet("get-by-department/{departmentType}")]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
-    [ProducesResponseType((int)HttpStatusCode.UnprocessableEntity)]
-    public async Task<IActionResult> GetByDepartment([FromRoute] DepartmentTypeDto departmentType,CancellationToken cancellationToken)
+    [HttpGet("{departmentType}/get-by-department")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> GetByDepartment([FromRoute] DepartmentTypeDto departmentType, CancellationToken cancellationToken)
     {
         return await _mediator.Send(new GetEmployeesByDepartmentType(departmentType), cancellationToken);
     }

@@ -2,14 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sales.Backoffice.Dto.Requests.Commands;
-using System.Net;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 
 [Authorize]
 [ApiController]
 [Route("api/agents")]
-[ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 public class AgentsController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -19,10 +18,10 @@ public class AgentsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-    [ProducesResponseType((int)HttpStatusCode.OK)]
-    public async Task<IActionResult> Delete(Guid id)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
-        return await _mediator.Send(new DeleteAgentRequest(id));
+        return await _mediator.Send(new DeleteAgentRequest(id), cancellationToken);
     }
 }
