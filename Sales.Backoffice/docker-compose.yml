@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  sales-backoffice-webapi:
+    build:
+      context: ./src/Sales.Backoffice.WebApi
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+      - "7000:7000"
+    depends_on:
+      - sqlserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - sales-network
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: cn-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Sales@2024backoffice"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+    volumes:
+      - /d/Projetos/DockerVolumes:/var/opt/mssql
+    networks:
+      - sales-network
+
+networks:
+  sales-network:
+    driver: bridge
