@@ -5,23 +5,19 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Tests", "tests\Sales.Backoffice.Tests\Sales.Backoffice.Tests.csproj", "{CBD5672D-20B1-4B43-9D3C-BBD9890CF52F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.WebApi", "src\Sales.Backoffice.WebApi\Sales.Backoffice.WebApi.csproj", "{75AC235A-1FDA-42E2-B05A-D6DA33307E2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.WebApi", "src\Services\WebApi\Sales.Backoffice.WebApi\Sales.Backoffice.WebApi.csproj", "{75AC235A-1FDA-42E2-B05A-D6DA33307E2C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Web", "src\Sales.Backoffice.Web\Sales.Backoffice.Web.csproj", "{F2D96B71-03C6-414D-BDCD-91AA78E792A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Identity", "src\Services\Identity\Sales.Backoffice.Identity\Sales.Backoffice.Identity.csproj", "{4C921E0F-1661-47DD-AC12-5EB7C08A5719}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Identity", "src\Sales.Backoffice.Identity\Sales.Backoffice.Identity.csproj", "{4C921E0F-1661-47DD-AC12-5EB7C08A5719}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Application", "src\Services\WebApi\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj", "{7E743B87-C1CF-40FA-B6AF-BB67E700F445}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Application", "src\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj", "{7E743B87-C1CF-40FA-B6AF-BB67E700F445}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Dto", "src\Services\WebApi\Sales.Backoffice.Dto\Sales.Backoffice.Dto.csproj", "{26941609-733A-4872-8C2B-827A2CEEB400}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Dto", "src\Sales.Backoffice.Dto\Sales.Backoffice.Dto.csproj", "{26941609-733A-4872-8C2B-827A2CEEB400}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Repository", "src\Services\WebApi\Sales.Backoffice.Repository\Sales.Backoffice.Repository.csproj", "{3862E89C-3B67-4599-95D6-A09832557241}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Repository", "src\Sales.Backoffice.Repository\Sales.Backoffice.Repository.csproj", "{3862E89C-3B67-4599-95D6-A09832557241}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Model", "src\Sales.Backoffice.Model\Sales.Backoffice.Model.csproj", "{AE541545-3C8E-4726-B019-C79147549ECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales.Backoffice.Model", "src\Services\WebApi\Sales.Backoffice.Model\Sales.Backoffice.Model.csproj", "{AE541545-3C8E-4726-B019-C79147549ECD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5C035B04-CF44-42ED-8A21-14752C149C23}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{FE416FF6-00DC-4D17-A557-711DCF62E144}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{18C47319-DB1D-47C7-91FA-5DBA7F4C53E2}"
 EndProject
@@ -43,10 +39,6 @@ Global
 		{75AC235A-1FDA-42E2-B05A-D6DA33307E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75AC235A-1FDA-42E2-B05A-D6DA33307E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75AC235A-1FDA-42E2-B05A-D6DA33307E2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2D96B71-03C6-414D-BDCD-91AA78E792A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2D96B71-03C6-414D-BDCD-91AA78E792A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2D96B71-03C6-414D-BDCD-91AA78E792A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2D96B71-03C6-414D-BDCD-91AA78E792A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C921E0F-1661-47DD-AC12-5EB7C08A5719}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -74,7 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CBD5672D-20B1-4B43-9D3C-BBD9890CF52F} = {18C47319-DB1D-47C7-91FA-5DBA7F4C53E2}
 		{75AC235A-1FDA-42E2-B05A-D6DA33307E2C} = {33CC8150-2009-4FE2-B040-47A9BAE33FF7}
-		{F2D96B71-03C6-414D-BDCD-91AA78E792A6} = {FE416FF6-00DC-4D17-A557-711DCF62E144}
 		{4C921E0F-1661-47DD-AC12-5EB7C08A5719} = {34A01449-38F9-441F-967F-CE44CE07A3B2}
 		{7E743B87-C1CF-40FA-B6AF-BB67E700F445} = {33CC8150-2009-4FE2-B040-47A9BAE33FF7}
 		{26941609-733A-4872-8C2B-827A2CEEB400} = {33CC8150-2009-4FE2-B040-47A9BAE33FF7}

@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj" />
-    <ProjectReference Include="..\..\src\Sales.Backoffice.Repository\Sales.Backoffice.Repository.csproj" />
+    <ProjectReference Include="..\..\src\Services\WebApi\Sales.Backoffice.Application\Sales.Backoffice.Application.csproj" />
+    <ProjectReference Include="..\..\src\Services\WebApi\Sales.Backoffice.Repository\Sales.Backoffice.Repository.csproj" />
   </ItemGroup>
 
 </Project>
