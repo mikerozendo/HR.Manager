@@ -136,7 +136,7 @@ public class CreateEmployeeRequestHandlerTests
 
         //Assert
         Assert.True(response.GetType() == typeof(OkObjectResult));
-        Assert.True(response.Value.GetType() == typeof(EntityCreatedResponse));
+        Assert.True(response.Value.GetType() == typeof(EntityAcceptedResponse));
     }
 
     [Fact]

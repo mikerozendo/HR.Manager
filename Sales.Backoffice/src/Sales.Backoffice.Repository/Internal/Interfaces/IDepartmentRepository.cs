@@ -3,9 +3,7 @@ using Sales.Backoffice.Model.Enums;
 
 namespace Sales.Backoffice.Repository.Internal.Interfaces;
 
-public interface IDepartmentRepository :
-   IGetRepository<Department>,
-   ICreateRepository<Department>
+public interface IDepartmentRepository : IUpdateRepository<Department>
 {
-    Task<Department?> GetByTypeAsync(DepartmentType departmentType);
+	Task<Department?> GetByTypeAsync(DepartmentType departmentType);	
 }

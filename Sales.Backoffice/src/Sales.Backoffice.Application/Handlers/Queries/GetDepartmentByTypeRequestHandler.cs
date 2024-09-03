@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Dto.Requests.Queries;
 using Sales.Backoffice.Dto.Responses;
 using Sales.Backoffice.Model.Enums;
@@ -41,7 +40,7 @@ public class GetDepartmentByTypeRequestHandler : IRequestHandler<GetDepartmentBy
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "[Handler]", nameof(CreateDepartmentRequest));
+            _logger.LogError(ex, "[Handler]", nameof(GetDepartmentByTypeRequestHandler));
             throw;
         }
     }

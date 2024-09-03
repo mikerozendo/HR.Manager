@@ -47,7 +47,7 @@ public class CreateEmployeeRequestHandler : IRequestHandler<CreateEmployeeReques
             employee.CreatedAt = DateTime.Now;
 
             await _employeeRepository.CreateAsync(employee);
-            return new OkObjectResult(new EntityCreatedResponse(employee.Id));
+            return new OkObjectResult(new EntityAcceptedResponse(employee.Id));
         }
         catch (Exception ex)
         {

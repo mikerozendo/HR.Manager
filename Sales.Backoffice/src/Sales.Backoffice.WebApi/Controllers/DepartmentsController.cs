@@ -20,19 +20,19 @@ public class DepartmentsController : ControllerBase
 		_mediator = mediator;
 	}
 
-	[HttpPost]
-	[ProducesResponseType(StatusCodes.Status200OK)]
-	[ProducesResponseType(StatusCodes.Status400BadRequest)]
-	public async Task<IActionResult> Post([FromBody] CreateDepartmentRequest request, CancellationToken cancellationToken)
-	{
-		return await _mediator.Send(request, cancellationToken);
-	}
-
 	[HttpGet("{type}")]
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> GetByType(DepartmentTypeDto type, CancellationToken cancellationToken)
 	{
 		return await _mediator.Send(new GetDepartmentByTypeRequest(type), cancellationToken);
+	}
+	
+	[HttpPatch("update-base-salary")]
+	[ProducesResponseType(StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	public async Task<IActionResult> UpdateSalary([FromBody]UpdateDepartmentBaseSalaryRequest request, CancellationToken cancellationToken)
+	{
+		return await _mediator.Send(request, cancellationToken);
 	}
 }
