@@ -1,4 +1,4 @@
-using Sales.Backoffice.WebApi;
+namespace Sales.Backoffice.WebApi;
 
 public class Program
 {

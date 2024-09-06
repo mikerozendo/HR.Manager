@@ -9,22 +9,17 @@ using Sales.Backoffice.WebApi.Configuration;
 
 namespace Sales.Backoffice.WebApi;
 
-
 public class Startup
 {
-	public Startup(IConfiguration configuration)
-	{
-		Configuration = configuration;
-	}
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+    }
 
-	public IConfiguration Configuration { get; }
+    public IConfiguration Configuration { get; }
 
-	public void Configureservices(IServiceCollection services)
-	{
-		// Adicione os serviços necessários para a aplicação.
-		services.AddControllers(); // Exemplo de serviço
-		
-		
+    public void Configureservices(IServiceCollection services)
+    {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
@@ -45,7 +40,7 @@ public class Startup
             .UseLazyLoadingProxies(false)
             .UseChangeTrackingProxies(false, false)
             .EnableThreadSafetyChecks(false)
-        //UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery) //I need to read more about this 
+            //UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery) //I need to read more about this 
         );
 
         services.BuildServiceProvider().Seed();
@@ -67,11 +62,11 @@ public class Startup
                     envConfig.IdentityConfig.Scope);
             });
 
-	}
+    }
 
-	public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-	{
-	  if (env.IsDevelopment())
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -89,5 +84,5 @@ public class Startup
         {
             endpoints.MapControllers().RequireAuthorization("ApiScope");
         });
-	}
+    }
 }
