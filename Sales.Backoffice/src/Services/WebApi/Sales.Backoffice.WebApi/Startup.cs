@@ -53,14 +53,14 @@ public class Startup
                 opt.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
             });
 
-        services.AddAuthorizationBuilder()
-            .AddPolicy("ApiScope", policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireClaim(
-                    "scope",
-                    envConfig.IdentityConfig.Scope);
-            });
+        // services.AddAuthorizationBuilder()
+        //     .AddPolicy("ApiScope", policy =>
+        //     {
+        //         policy.RequireAuthenticatedUser();
+        //         policy.RequireClaim(
+        //             "scope",
+        //             envConfig.IdentityConfig.Scope);
+        //     });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -71,11 +71,11 @@ public class Startup
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sales.Backoffice.WebApi"); });
         }
 
-        // app.UseHttpsRedirection();
         app.UseRouting();
-        app.UseAuthentication();
-        app.UseAuthorization();
+        // app.UseAuthentication();
+        // app.UseAuthorization();
 
-        app.UseEndpoints(endpoints => { endpoints.MapControllers().RequireAuthorization("ApiScope"); });
+        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        // app.UseEndpoints(endpoints => { endpoints.MapControllers().RequireAuthorization("ApiScope"); });
     }
 }

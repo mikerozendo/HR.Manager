@@ -5,7 +5,7 @@ using Sales.Backoffice.Dto.Requests.Commands;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 
-[Authorize]
+// [Authorize]
 [ApiController]
 [Route("api/agents")]
 [ProducesResponseType(StatusCodes.Status401Unauthorized)]

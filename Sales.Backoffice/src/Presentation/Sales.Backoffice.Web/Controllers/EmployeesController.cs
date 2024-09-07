@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Sales.Backoffice.Dto.Enums;
 using Sales.Backoffice.Dto.Requests.Commands;
 using Sales.Backoffice.Web.Repositories.Interfaces;
 
 namespace Sales.Backoffice.Web.Controllers;
 
 [Authorize]
-public class EmployeesController(ILogger<EmployeesController> logger, IWebApiClient webApiClient) : Controller
+public class EmployeesController(IWebApiClient webApiClient) : Controller
 {
 	[HttpGet]
-	public async Task<IActionResult> Index()
+	public async Task<IActionResult> Index(ActiveEmployeeOptionsDto activeEmployeeOptionsDto = ActiveEmployeeOptionsDto.OnlyActive)
 	{
-		//var list = await _employeeService.GetAsync();
-		return View(new List<object>());
+		return View(await webApiClient.GetEmployeesByFilterAsync(activeEmployeeOptionsDto));
 	}
 
 	[HttpPost]

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Sales.Backoffice.WebApi.Controllers;
 
-[Authorize]
+// [Authorize]
 [Route("api/health-check")]
 public class HealthCheckController : ControllerBase
 {

@@ -26,9 +26,9 @@ public static class EmployeeMapper
         return employee;
     }
 
-    public static GetEmployeeByIdResponse ToDto(this Employee employeeModel)
+    public static GetEmployeeResponse ToDto(this Employee employeeModel)
     {
-        var employee = new GetEmployeeByIdResponse
+        return new GetEmployeeResponse
         {
             BirthDate = employeeModel.BirthDate.Date,
             Name = employeeModel.Name,
@@ -37,7 +37,5 @@ public static class EmployeeMapper
             ContractStart = employeeModel.StartDate.Date,
             DepartmentType = (DepartmentTypeDto)employeeModel.Department.DepartmentType
         };
-
-        return employee;
     }
 }
