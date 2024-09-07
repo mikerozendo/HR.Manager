@@ -1,6 +1,4 @@
-﻿using Sales.Backoffice.Dto.Enums;
-
-namespace Sales.Backoffice.Dto.Responses;
+﻿namespace Sales.Backoffice.Dto.Responses;
 
 public class GetEmployeeByDepartmentTypeResponse
 {

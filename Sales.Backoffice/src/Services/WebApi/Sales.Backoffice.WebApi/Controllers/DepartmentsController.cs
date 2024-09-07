@@ -11,21 +11,14 @@ namespace Sales.Backoffice.WebApi.Controllers;
 [ApiController]
 [Route("api/departments")]
 [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-public class DepartmentsController : ControllerBase
+public class DepartmentsController(IMediator mediator) : ControllerBase
 {
-	private readonly IMediator _mediator;
-
-	public DepartmentsController(IMediator mediator)
-	{
-		_mediator = mediator;
-	}
-
-	[HttpGet("{type}")]
+    [HttpGet("{type}")]
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> GetByType(DepartmentTypeDto type, CancellationToken cancellationToken)
 	{
-		return await _mediator.Send(new GetDepartmentByTypeRequest(type), cancellationToken);
+		return await mediator.Send(new GetDepartmentByTypeRequest(type), cancellationToken);
 	}
 	
 	[HttpPatch("update-base-salary")]
@@ -33,6 +26,6 @@ public class DepartmentsController : ControllerBase
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> UpdateSalary([FromBody]UpdateDepartmentBaseSalaryRequest request, CancellationToken cancellationToken)
 	{
-		return await _mediator.Send(request, cancellationToken);
+		return await mediator.Send(request, cancellationToken);
 	}
 }

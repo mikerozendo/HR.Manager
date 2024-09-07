@@ -25,9 +25,7 @@ public class UpdateDepartmentBaseSalaryRequestHandler : IRequestHandler<UpdateDe
 	{
 		var department = await _departmentRepository.GetByTypeAsync((DepartmentType)request.Type);
 		if (department == null)
-		{
 			return new NotFoundObjectResult("The required department was not found");
-		}
 		
 		department.EmployeeBaseSalary = request.Salary;
 		await _departmentRepository.UpdateAsync(department);
