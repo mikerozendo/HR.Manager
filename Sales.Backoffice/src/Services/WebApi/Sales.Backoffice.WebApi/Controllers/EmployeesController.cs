@@ -22,12 +22,12 @@ public class EmployeeController(IMediator mediator) : ControllerBase
 		return await mediator.Send(new GetEmployeeByIdRequest(id), cancellationToken);
 	}
 	
-	[HttpGet("{activeEmployeeOptionsDto}/get-by-filter")]
+	[HttpGet("{filterOption}/get-by-filter")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> Get([FromRoute] ActiveEmployeeOptionsDto activeEmployeeOptionsDto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get([FromRoute] ActiveEmployeeOptionsDto filterOption, CancellationToken cancellationToken)
     {
-        return await mediator.Send(new GetEmployeesByFilterRequest(activeEmployeeOptionsDto), cancellationToken);
+        return await mediator.Send(new GetEmployeesByFilterRequest(filterOption), cancellationToken);
     }
 
 	[HttpPost]
