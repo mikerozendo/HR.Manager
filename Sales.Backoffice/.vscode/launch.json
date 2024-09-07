@@ -1,17 +1,41 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Docker .NET Launch",
-            "type": "docker",
+            "name": "Launch Identity",
+            "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/src/Services/WebApi/Sales.Backoffice.WebApi/Sales.Backoffice.WebApi.csproj"
-            }
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Services/Identity/Sales.Backoffice.Identity/bin/Debug/net8.0/Sales.Backoffice.Identity.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/WebApp1",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Launch WebApi",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Services/WebApi/Sales.Backoffice.WebApi/bin/Debug/net8.0/Sales.Backoffice.WebApi.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/WebApp2",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Launch MVC WebApp",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Presentation/Sales.Backoffice.Web/bin/Debug/net8.0/Sales.Backoffice.Web.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/WebApp3",
+            "stopAtEntry": false
+        },
+    ],
+    "compounds": [
+        {
+            "name": "Multiple Startup Projects",
+            "configurations": ["Launch Identity","Launch WebApi","Launch MVC WebApp"]
         }
     ]
 }
