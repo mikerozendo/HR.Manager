@@ -4,18 +4,11 @@ using Sales.Backoffice.Repository.Internal.Interfaces;
 
 namespace Sales.Backoffice.Repository.Internal;
 
-public class DocumentRepository : IDocumentRepository
+public class DocumentRepository(ApplicationDbContext dbContext) : IDocumentRepository
 {
-    private readonly ApplicationDbContext _dbContext;
-
-    public DocumentRepository(ApplicationDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
     public async Task<List<Document>> GetDocumentsByNumbersAsync(params string[] documents)
     {
-        return await _dbContext.Documents
+        return await dbContext.Documents
             .Where(x => documents.Contains(x.Number))
             .ToListAsync();
     }

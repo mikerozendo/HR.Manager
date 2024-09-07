@@ -4,7 +4,7 @@ namespace Sales.Backoffice.Model;
 
 public class Sale : RegisterBase
 {
-    public SalesAgent SalesAgent { get; set; }
+    public Seller Seller { get; set; }
     public decimal TotalAmount { get; set; }
     public SaleStatus SaleStatus { get; set; }
     public Client Client { get; set; }

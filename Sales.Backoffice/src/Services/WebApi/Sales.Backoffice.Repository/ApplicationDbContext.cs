@@ -13,6 +13,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<IndividualPerson> IndividualPersons { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Department> Departments { get; set; }
+    public DbSet<Seller> Sellers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

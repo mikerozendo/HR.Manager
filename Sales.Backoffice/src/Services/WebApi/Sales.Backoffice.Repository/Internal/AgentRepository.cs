@@ -4,22 +4,16 @@ using Sales.Backoffice.Repository.Internal.Interfaces;
 
 namespace Sales.Backoffice.Repository.Internal;
 
-public class AgentRepository : IAgentRepository
+public class AgentRepository(ApplicationDbContext dbContext) : IAgentRepository
 {
-    private readonly ApplicationDbContext _dbContext;
-    public AgentRepository(ApplicationDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
     public async Task DeleteAsync(Agent agent)
     {
-        _dbContext.Agents.Remove(agent);
-        await _dbContext.SaveChangesAsync();
+        dbContext.Agents.Remove(agent);
+        await dbContext.SaveChangesAsync();
     }
 
     public async Task<Agent?> GetByIdAsync(Guid id)
     {
-        return await _dbContext.Agents.SingleOrDefaultAsync(x => x.Id == id);
+        return await dbContext.Agents.SingleOrDefaultAsync(x => x.Id == id);
     }
 }
