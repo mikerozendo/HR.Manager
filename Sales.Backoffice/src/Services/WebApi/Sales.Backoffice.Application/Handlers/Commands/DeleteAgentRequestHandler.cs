@@ -8,6 +8,7 @@ namespace Sales.Backoffice.Application.Handlers.Commands;
 public class DeleteAgentRequestHandler : IRequestHandler<DeleteAgentRequest, ObjectResult>
 {
     private readonly IAgentRepository _agentRepository;
+
     public DeleteAgentRequestHandler(IAgentRepository agentRepository)
     {
         _agentRepository = agentRepository;

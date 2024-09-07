@@ -2,7 +2,6 @@
 
 public class CreateAdressRequest
 {
-
     public int AdressCategory { get; set; }
     public int AdressType { get; set; }
     public string Street { get; set; }

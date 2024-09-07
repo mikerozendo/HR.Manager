@@ -3,5 +3,5 @@
 public enum AdressType
 {
     Personal,
-    Company,
+    Company
 }

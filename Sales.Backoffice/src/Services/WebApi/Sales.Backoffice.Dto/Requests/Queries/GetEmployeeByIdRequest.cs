@@ -5,10 +5,10 @@ namespace Sales.Backoffice.Dto.Requests.Queries;
 
 public class GetEmployeeByIdRequest : IRequest<ObjectResult>
 {
-	public Guid EmployeeId { get; set; }
-	
-	public GetEmployeeByIdRequest(Guid id)
-	{
-		EmployeeId = id;
-	}
+    public GetEmployeeByIdRequest(Guid id)
+    {
+        EmployeeId = id;
+    }
+
+    public Guid EmployeeId { get; set; }
 }

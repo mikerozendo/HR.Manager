@@ -5,5 +5,5 @@ namespace Sales.Backoffice.Repository.Internal.Interfaces;
 
 public interface IDepartmentRepository : IUpdateRepository<Department>
 {
-	Task<Department?> GetByTypeAsync(DepartmentType departmentType);	
+    Task<Department?> GetByTypeAsync(DepartmentType departmentType);
 }

@@ -35,11 +35,11 @@ public class Startup
 
         services.AddDbContextPool<ApplicationDbContext>(
             opt => opt.UseSqlServer(envConfig.ConnectionStrings.SqlServer,
-                migrations => migrations.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
-            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
-            .UseLazyLoadingProxies(false)
-            .UseChangeTrackingProxies(false, false)
-            .EnableThreadSafetyChecks(false)
+                    migrations => migrations.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+                .UseLazyLoadingProxies(false)
+                .UseChangeTrackingProxies(false, false)
+                .EnableThreadSafetyChecks(false)
             //UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery) //I need to read more about this 
         );
 
@@ -61,7 +61,6 @@ public class Startup
                     "scope",
                     envConfig.IdentityConfig.Scope);
             });
-
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -69,10 +68,7 @@ public class Startup
         if (env.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sales.Backoffice.WebApi");
-            });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sales.Backoffice.WebApi"); });
         }
 
         // app.UseHttpsRedirection();
@@ -80,9 +76,6 @@ public class Startup
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers().RequireAuthorization("ApiScope");
-        });
+        app.UseEndpoints(endpoints => { endpoints.MapControllers().RequireAuthorization("ApiScope"); });
     }
 }

@@ -5,7 +5,7 @@ namespace Sales.Backoffice.WebApi.Controllers;
 
 [Authorize]
 [Route("api/health-check")]
-public class HealthCheckController() : ControllerBase
+public class HealthCheckController : ControllerBase
 {
     [HttpGet]
     public IActionResult Get()

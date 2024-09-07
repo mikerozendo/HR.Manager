@@ -10,25 +10,26 @@ namespace Sales.Backoffice.Application.Handlers.Commands;
 
 public class UpdateDepartmentBaseSalaryRequestHandler : IRequestHandler<UpdateDepartmentBaseSalaryRequest, ObjectResult>
 {
-	private readonly IDepartmentRepository _departmentRepository;
-	private readonly ILogger<UpdateDepartmentBaseSalaryRequestHandler> _logger;
+    private readonly IDepartmentRepository _departmentRepository;
+    private readonly ILogger<UpdateDepartmentBaseSalaryRequestHandler> _logger;
 
-	public UpdateDepartmentBaseSalaryRequestHandler(
-		ILogger<UpdateDepartmentBaseSalaryRequestHandler> logger,
-		IDepartmentRepository departmentRepository)
-	{
-		_departmentRepository = departmentRepository;
-		_logger = logger;
-	}
+    public UpdateDepartmentBaseSalaryRequestHandler(
+        ILogger<UpdateDepartmentBaseSalaryRequestHandler> logger,
+        IDepartmentRepository departmentRepository)
+    {
+        _departmentRepository = departmentRepository;
+        _logger = logger;
+    }
 
-	public async Task<ObjectResult> Handle(UpdateDepartmentBaseSalaryRequest request, CancellationToken cancellationToken)
-	{
-		var department = await _departmentRepository.GetByTypeAsync((DepartmentType)request.Type);
-		if (department == null)
-			return new NotFoundObjectResult("The required department was not found");
-		
-		department.EmployeeBaseSalary = request.Salary;
-		await _departmentRepository.UpdateAsync(department);
-		return new OkObjectResult(new EntityAcceptedResponse(department.Id));
-	}
+    public async Task<ObjectResult> Handle(UpdateDepartmentBaseSalaryRequest request,
+        CancellationToken cancellationToken)
+    {
+        var department = await _departmentRepository.GetByTypeAsync((DepartmentType)request.Type);
+        if (department == null)
+            return new NotFoundObjectResult("The required department was not found");
+
+        department.EmployeeBaseSalary = request.Salary;
+        await _departmentRepository.UpdateAsync(department);
+        return new OkObjectResult(new EntityAcceptedResponse(department.Id));
+    }
 }

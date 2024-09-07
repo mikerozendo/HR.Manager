@@ -2,18 +2,17 @@
 
 namespace Sales.Backoffice.Model;
 
-
 public abstract class Agent : RegisterBase
 {
-    public AgentType PersonType { get; protected set; }
-    public List<Document> Documents { get; protected set; } = [];
-    public List<Adress> Adresses { get; protected set; } = [];
-    public List<Contact> Contacts { get; protected set; } = [];
-
     protected Agent(AgentType personType)
     {
         PersonType = personType;
     }
+
+    public AgentType PersonType { get; protected set; }
+    public List<Document> Documents { get; protected set; } = [];
+    public List<Adress> Adresses { get; protected set; } = [];
+    public List<Contact> Contacts { get; protected set; } = [];
 
 
     public void WithDocuments(List<Document> documents)

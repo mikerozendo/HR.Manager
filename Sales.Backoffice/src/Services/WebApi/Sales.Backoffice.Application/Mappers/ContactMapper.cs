@@ -11,7 +11,7 @@ public static class ContactMapper
         if (createPersonContactListRequests.Count == 0) return [];
 
         return createPersonContactListRequests
-            .Select(x => new Contact()
+            .Select(x => new Contact
             {
                 ContactType = (ContactType)x.ContactType,
                 Value = x.Contact

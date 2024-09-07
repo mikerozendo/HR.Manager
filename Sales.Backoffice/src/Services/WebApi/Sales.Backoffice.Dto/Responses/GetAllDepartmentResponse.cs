@@ -6,5 +6,4 @@ public class GetAllDepartmentResponse
 {
     public Guid Id { get; set; }
     public DepartmentTypeDto DepartmentType { get; set; }
-
 }

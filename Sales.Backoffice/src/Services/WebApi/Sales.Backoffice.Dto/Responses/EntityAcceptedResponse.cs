@@ -2,11 +2,14 @@
 
 public class EntityAcceptedResponse
 {
-    public Guid Id { get; set; }
-    public EntityAcceptedResponse() { }
+    public EntityAcceptedResponse()
+    {
+    }
 
     public EntityAcceptedResponse(Guid id)
     {
         Id = id;
     }
+
+    public Guid Id { get; set; }
 }

@@ -4,5 +4,7 @@ namespace Sales.Backoffice.Model;
 
 public class Company : Agent
 {
-    public Company() : base(AgentType.Company) { }
+    public Company() : base(AgentType.Company)
+    {
+    }
 }

@@ -14,18 +14,19 @@ namespace Sales.Backoffice.WebApi.Controllers;
 public class DepartmentsController(IMediator mediator) : ControllerBase
 {
     [HttpGet("{type}")]
-	[ProducesResponseType(StatusCodes.Status200OK)]
-	[ProducesResponseType(StatusCodes.Status404NotFound)]
-	public async Task<IActionResult> GetByType(DepartmentTypeDto type, CancellationToken cancellationToken)
-	{
-		return await mediator.Send(new GetDepartmentByTypeRequest(type), cancellationToken);
-	}
-	
-	[HttpPatch("update-base-salary")]
-	[ProducesResponseType(StatusCodes.Status200OK)]
-	[ProducesResponseType(StatusCodes.Status404NotFound)]
-	public async Task<IActionResult> UpdateSalary([FromBody]UpdateDepartmentBaseSalaryRequest request, CancellationToken cancellationToken)
-	{
-		return await mediator.Send(request, cancellationToken);
-	}
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetByType(DepartmentTypeDto type, CancellationToken cancellationToken)
+    {
+        return await mediator.Send(new GetDepartmentByTypeRequest(type), cancellationToken);
+    }
+
+    [HttpPatch("update-base-salary")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateSalary([FromBody] UpdateDepartmentBaseSalaryRequest request,
+        CancellationToken cancellationToken)
+    {
+        return await mediator.Send(request, cancellationToken);
+    }
 }

@@ -3,5 +3,5 @@
 public enum ContactType
 {
     CellPhone,
-    Email,
+    Email
 }

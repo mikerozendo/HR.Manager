@@ -15,32 +15,30 @@ namespace Sales.Backoffice.WebApi.Controllers;
 public class EmployeeController(IMediator mediator) : ControllerBase
 {
     [HttpGet("{id}")]
-	[ProducesResponseType(StatusCodes.Status200OK)]
-	[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
-	public async Task<IActionResult> GetById([FromRoute] Guid id, CancellationToken cancellationToken)
-	{
-		return await mediator.Send(new GetEmployeeByIdRequest(id), cancellationToken);
-	}
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> GetById([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        return await mediator.Send(new GetEmployeeByIdRequest(id), cancellationToken);
+    }
 
-	[HttpPost]
-	[ProducesResponseType(typeof(EntityAcceptedResponse), StatusCodes.Status201Created)]
-	[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
-	public async Task<IActionResult> Post([FromBody] CreateEmployeeRequest request, CancellationToken cancellationToken)
-	{
-		var response = await mediator.Send(request, cancellationToken);
-		if (response is OkObjectResult)
-		{
-			return Created(nameof(GetById), response.Value);
-		}
+    [HttpPost]
+    [ProducesResponseType(typeof(EntityAcceptedResponse), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> Post([FromBody] CreateEmployeeRequest request, CancellationToken cancellationToken)
+    {
+        var response = await mediator.Send(request, cancellationToken);
+        if (response is OkObjectResult) return Created(nameof(GetById), response.Value);
 
-		return response;
-	}
+        return response;
+    }
 
-	[HttpGet("{departmentType}/get-by-department")]
-	[ProducesResponseType(StatusCodes.Status200OK)]
-	[ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
-	public async Task<IActionResult> GetByDepartment([FromRoute] DepartmentTypeDto departmentType, CancellationToken cancellationToken)
-	{
-		return await mediator.Send(new GetEmployeesByDepartmentType(departmentType), cancellationToken);
-	}
+    [HttpGet("{departmentType}/get-by-department")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> GetByDepartment([FromRoute] DepartmentTypeDto departmentType,
+        CancellationToken cancellationToken)
+    {
+        return await mediator.Send(new GetEmployeesByDepartmentType(departmentType), cancellationToken);
+    }
 }

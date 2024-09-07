@@ -23,18 +23,17 @@ public class GetDepartmentByTypeRequestHandler : IRequestHandler<GetDepartmentBy
 
     public async Task<ObjectResult> Handle(GetDepartmentByTypeRequest request, CancellationToken cancellationToken)
     {
-
         var department = await _departmentRepository.GetByTypeAsync((DepartmentType)request.Type);
         if (department is null)
             return new NotFoundObjectResult("The expected department was not found");
 
-        return new OkObjectResult(new GetDepartmentByIdResponse()
+        return new OkObjectResult(new GetDepartmentByIdResponse
         {
             Id = department.Id,
             DepartmentType = request.Type,
             MaxAcceptableEmployees = department.MaxAcceptableEmployees,
             Description = department.DepartmentType.ToString(),
-            SalaryBase = department.EmployeeBaseSalary,
+            SalaryBase = department.EmployeeBaseSalary
         });
     }
 }

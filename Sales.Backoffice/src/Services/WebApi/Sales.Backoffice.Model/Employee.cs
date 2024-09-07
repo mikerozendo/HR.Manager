@@ -6,6 +6,7 @@ public class Employee : IndividualPerson
     public Guid DepartmentId { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime? EndDate { get; set; }
+
     public bool IsActive
     {
         get
@@ -16,8 +17,6 @@ public class Employee : IndividualPerson
             return true;
         }
     }
-
-    public Employee() : base() { }
 
     public void AssignToADepartment(Department department)
     {
