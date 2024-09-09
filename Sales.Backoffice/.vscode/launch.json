@@ -9,7 +9,11 @@
             "program": "${workspaceFolder}/src/Services/Identity/Sales.Backoffice.Identity/bin/Debug/net8.0/Sales.Backoffice.Identity.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Services/Identity/Sales.Backoffice.Identity",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
         },
         {
             "name": "Launch WebApi",
@@ -19,7 +23,11 @@
             "program": "${workspaceFolder}/src/Services/WebApi/Sales.Backoffice.WebApi/bin/Debug/net8.0/Sales.Backoffice.WebApi.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Services/WebApi/Sales.Backoffice.WebApi",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
         },
         {
             "name": "Launch MVC WebApp",
@@ -29,7 +37,11 @@
             "program": "${workspaceFolder}/src/Presentation/Sales.Backoffice.Web/bin/Debug/net8.0/Sales.Backoffice.Web.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Presentation/Sales.Backoffice.Web",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
         }
     ],
     "compounds": [
