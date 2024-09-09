@@ -5,13 +5,15 @@ namespace Sales.Backoffice.Repository.Seeders;
 
 public static class DatabaseSeeder
 {
-	public static void SeedDatabase(this IServiceCollection serviceCollection)
+	public static async Task SeedDatabaseAsync(this IServiceCollection serviceCollection)
 	{
 		using var serviceProvider = serviceCollection.BuildServiceProvider();
 		var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
 		context.Database.Migrate();
 
-		DepartmentSeeder.Seed(serviceProvider);
-		EmployeeSeeder.Seed(serviceProvider);
+		await DepartmentSeeder.SeedAsync(serviceProvider);
+		await EmployeeSeeder.SeedAsync(serviceProvider);
+		
+		
 	}
 }

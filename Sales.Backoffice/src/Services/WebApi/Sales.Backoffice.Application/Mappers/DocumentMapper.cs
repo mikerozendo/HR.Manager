@@ -12,7 +12,6 @@ public static class DocumentMapper
             {
                 DocumentType = (DocumentType)x.DocumentType,
                 Number = x.Number,
-                Validated = false
             })
             .ToList();
     }

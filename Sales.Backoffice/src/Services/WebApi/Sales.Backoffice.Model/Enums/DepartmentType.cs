@@ -2,7 +2,8 @@
 
 public enum DepartmentType
 {
-    HR = 0,
-    Sales = 1,
-    Financial = 2
+	HR = 0,
+	Sales = 1,
+	Financial = 2,
+	SalesManagement = 3
 }

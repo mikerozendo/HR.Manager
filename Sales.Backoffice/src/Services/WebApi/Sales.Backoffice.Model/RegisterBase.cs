@@ -3,7 +3,7 @@
 public abstract class RegisterBase : EntityBase
 {
     public DateTime CreatedAt { get; set; }
-    public DateTime ModifiedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 
     public void WithCreatedDate(DateTime createdDate)
     {
