@@ -56,12 +56,12 @@ internal class Program
 		   app.UseHsts();
 	   }
 
-	//    app.UseHttpsRedirection();
+	   app.UseHttpsRedirection();
 	   app.UseMiddleware<ExceptionMiddleware>();
 
 	   app.UseStaticFiles();
 
-	//    app.UseRouting();
+	   app.UseRouting();
 	   app.UseAuthentication();
 	   app.UseAuthorization();
 	   app.MapControllerRoute(

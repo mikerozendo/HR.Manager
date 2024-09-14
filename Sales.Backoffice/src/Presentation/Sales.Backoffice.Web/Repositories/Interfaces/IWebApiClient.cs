@@ -9,18 +9,18 @@ namespace Sales.Backoffice.Web.Repositories.Interfaces;
 
 public interface IWebApiClient
 {
-	[Post("/employees")]
+	[Post("/api/employees")]
 	Task<ActionResult> PostAsync(CreateEmployeeRequest createEmployeeRequest);
 	
 	[Get("/employees/{id}")]
-	Task<ActionResult<GetEmployeeResponse>> GetByIdAsync(Guid employeeId);
+	Task<ActionResult<GetEmployeeResponse>> GetByIdAsync(Guid id);
 	
-	[Get("/employees/{filterOption}/get-by-filter")]
+	[Get("/api/employees/{filterOption}/get-by-filter")]
 	Task<ActionResult<IEnumerable<GetEmployeeByDepartmentTypeResponse>>> GetEmployeesByFilterAsync(ActiveEmployeeOptionsDto filterOption);
 	
-	[Get("/employees/{departmentType}/get-by-department")]
+	[Get("/api/employees/{departmentType}/get-by-department")]
 	Task<ActionResult<IEnumerable<GetEmployeeByDepartmentTypeResponse>>> GetEmployeesByDepartmentAsync(DepartmentTypeDto departmentType);
 	
-	[Delete("/agents")]
-	Task<ActionResult> DeleteAsync(Guid employeeId);
+	[Delete("/api/agents/{id}")]
+	Task<ActionResult> DeleteAsync(Guid id);
 }
