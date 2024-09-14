@@ -10,6 +10,15 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// builder.WebHost.ConfigureKestrel(options =>
+// {
+// 	options.Listen(System.Net.IPAddress.Loopback, 7040, listenOptions =>
+// 	{
+//         listenOptions.UseHttps("certs/webapi.pfx", "salesbackoffice");
+// 	});
+// });
+
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sales.Backoffice.WebApi", Version = "v1" }));
@@ -24,7 +33,7 @@ builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
 
 var configuration = builder.Configuration;
 var envConfig = configuration.Get<EnvironmentConfiguration>()
-    ?? throw new ArgumentNullException("Missing configuration file");
+	?? throw new ArgumentNullException("Missing configuration file");
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(opt =>
 	opt.UseSqlServer(envConfig.ConnectionStrings.SqlServer, migrations =>
@@ -48,7 +57,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization(options =>
 {
 	options.AddPolicy("ApiScope", policy =>
-    {
+	{
 		policy.RequireAuthenticatedUser();
 		policy.RequireClaim("scope", envConfig.IdentityConfig.Scope);
 	});
@@ -64,6 +73,7 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sales.Backoffice.WebApi v1"));
 }
 
+app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
