@@ -30,9 +30,9 @@ public static class IdentityConfiguration
 
                 AllowedGrantTypes = GrantTypes.Code,
 
-                RedirectUris = { "https://localhost:6001/signin-oidc" },
-                FrontChannelLogoutUri = "https://localhost:6001/signout-oidc",
-                PostLogoutRedirectUris = { "https://localhost:6001/signout-callback-oidc" },
+                RedirectUris = { "https://localhost:7050/signin-oidc" },
+                FrontChannelLogoutUri = "https://localhost:7050/signout-oidc",
+                PostLogoutRedirectUris = { "https://localhost:7050/signout-callback-oidc" },
 
                 AllowOfflineAccess = false,
                 AllowedScopes =
@@ -50,9 +50,7 @@ public static class IdentityConfiguration
         new ApiResource(envConfig.Scopes.SalesBackofficeWebApi, "Sales Backoffice API")
         {
             Scopes = { envConfig.Scopes.SalesBackofficeWebApi },
-
-                            ApiSecrets = { new Secret("api-secret".Sha256()) }
-
+            ApiSecrets = { new Secret("api-secret".Sha256()) }
         }
     ];
 }
