@@ -5,127 +5,99 @@
     ViewData["Title"] = "Create a new Employee";
 }
 
-<div class="card color-primary-gray default-card">
-    <div class="card-header">
-        <h5 class="card-title">New Employee</h5>
+<div class="card shadow-sm" style="margin-top: 5vh !important; max-height: 80vh;">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">New Employee</h5>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="max-height: 80%; overflow-y: auto;">
         <form asp-action="Post" asp-controller="Employee" method="post" id="employee-form">
-            <div class="form-row">
-                <div class="col">
+            <div class="row">
+                <div class="col-md-6">
                     <fieldset>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-2">
-                                    <div class="form-floating mb-3">
-                                        <input asp-for="Name" class="form-control">
-                                        <label asp-for="Name" class="form-label">Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-floating mb-3">
-                                        <input asp-for="LastName" class="form-control">
-                                        <label asp-for="LastName" class="form-label">Last Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-floating mb-3">
-                                        <select asp-for="SexType" class="form-select">
-                                            <option selected>Select</option>
-                                            <option value="0">Male</option>
-                                            <option value="1">Female</option>
-                                        </select>
-                                        <label asp-for="SexType" class="form-label">Sex</label>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-floating mb-3">
-                                        <input asp-for="BirthDate" type="date" class="form-control">
-                                        <label asp-for="BirthDate" class="form-label">Birth Date</label>
-                                    </div>
-                                </div>
-                            </div>
+                        <legend>Employee Information</legend>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-control" placeholder="Name">
+                            <label asp-for="Name">Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="LastName" class="form-control" placeholder="Last Name">
+                            <label asp-for="LastName">Last Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select asp-for="SexType" class="form-select">
+                                <option selected>Select</option>
+                                <option value="0">Male</option>
+                                <option value="1">Female</option>
+                            </select>
+                            <label asp-for="SexType">Sex</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="BirthDate" type="date" class="form-control" placeholder="Birth Date">
+                            <label asp-for="BirthDate">Birth Date</label>
                         </div>
                     </fieldset>
                 </div>
-                <div id="documentsForm" class="col">
+                <div class="col-md-6" style="max-height: 80vh !important;">
                     <fieldset>
-                        <div class="mb-3">
-                            <div class="row">
-@*                                 <div class="col-3">
-                                    <div class="form-floating mb-3">
-                                        <input asp-for="Rg" class="form-control">
-                                        <label asp-for="Rg" class="form-label">Rg</label>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-floating mb-3">
-                                        <input asp-for="Cpf" class="form-control">
-                                        <label asp-for="Cpf" class="form-label">Cpf</label>
-                                    </div>
-                                </div> *@
-                                <div class="col-4">
-                                    <button class="btn btn-primary" type="button" id="add-contact-button">Add Contact</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div id="person-contact-list">
-                                        <h4>Contacts</h4>
-                                        <div id="contacts"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <legend>Contacts</legend>
+                        <button type="button" class="btn btn-outline-primary mb-3 w-100" id="add-contact-button">Add
+                            Contact</button>
+                        <div id="contacts" class="contacts-list">
                         </div>
                     </fieldset>
                 </div>
             </div>
-            <button id="saveBtn" type="submit" class="btn btn-primary" onclick="">Save</button>
         </form>
     </div>
+</div>
+<div class="d-flex justify-content-end mt-3">
+    <button id="saveBtn" type="submit" class="btn btn-primary">Save</button>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            getElementById('add-contact-button')
-                .addEventListener("click", function () {
-                    addContact();
-                });
+            document.getElementById('add-contact-button').addEventListener("click", function () {
+                addContact();
+            });
         });
 
         function addContact() {
             var contactIndex = document.querySelectorAll(".contact-item").length;
 
             var contactHtml = `
-                       <div class="contact-item input${contactIndex}" data-index="${contactIndex}">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-floating mb-3">
-                                        <input name="PersonContactList[${contactIndex}].Contact" class="form-control" />
-                                        <label>Contact</label>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-floating mb-3">
-                                        <input name="PersonContactList[${contactIndex}].Type" type="number" class="form-control" />
-                                        <label>Type</label>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <button id="" type="button" class="btn btn-primary" onclick="removeContactInputData(${contactIndex})">remove</button>
+                    <div class="contact-item mb-3" data-index="${contactIndex}">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-floating mb-3">
+                                    <input name="PersonContactList[${contactIndex}].Contact" class="form-control" placeholder="Contact">
+                                    <label>Contact</label>
                                 </div>
                             </div>
+                            <div class="col-md-5">
+                                <div class="form-floating mb-3">
+                                    <select name="PersonContactList[${contactIndex}].Type" class="form-select" aria-label="Type">
+                                        <option value="" disabled selected>Select Type</option>
+                                        <option value="0">CellPhone</option>
+                                        <option value="1">Email</option>
+                                    </select>
+                                    <label for="type-select-${contactIndex}">Type</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-center justify-content-center">
+                                <button type="button" class="btn btn-outline-danger" onclick="removeContactInputData(${contactIndex})">Remove</button>
+                            </div>
                         </div>
-                    `;
+                    </div>
+                `;
 
             document.getElementById('contacts').insertAdjacentHTML('beforeend', contactHtml);
         }
 
         function removeContactInputData(inputDataIndex) {
             let htmlNode = document.querySelector(`[data-index='${inputDataIndex}']`);
-            htmlNode.removeChild(htmlNode.children[0]);
+            htmlNode.remove();
         }
     </script>
 }
