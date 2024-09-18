@@ -11,10 +11,7 @@ public class Employee : IndividualPerson
     {
         get
         {
-            if (EndDate.HasValue && EndDate.Value.Date <= DateTime.Now.Date)
-                return false;
-
-            return true;
+            return !EndDate.HasValue || EndDate.Value.Date > DateTime.Now.Date;
         }
     }
 

@@ -17,11 +17,11 @@ internal class Program
 
 	   builder.Services.AddHttpContextAccessor();
 	   builder.Services.AddControllersWithViews();
-	   builder.Services.AddTransient<AuthenticationHandler>();
+	   builder.Services.AddTransient<RefitHandler>();
 		
 	   builder.Services
 		.AddRefitClient<IWebApiClient>()
-		.AddHttpMessageHandler<AuthenticationHandler>()
+		.AddHttpMessageHandler<RefitHandler>()
 		.ConfigureHttpClient(c => c.BaseAddress = new Uri(configuration.WebServiceUrls.SalesBackofficeWebApi));
 
 	   builder.Services.AddAuthentication(options =>

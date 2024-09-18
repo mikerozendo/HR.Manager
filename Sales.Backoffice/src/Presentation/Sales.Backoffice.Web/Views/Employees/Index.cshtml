@@ -4,38 +4,44 @@
     ViewData["Title"] = "Employees";
 }
 
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title">Employees</h5>
-    </div>
-    <div class="card-body">
-        <div class="text-end">
-            <a class="text-end btn btn-sm btn-primary" asp-controller="Employee" asp-action="Create">New</a>
+<div class="row">
+    <div class="col-sm">
+        <div class="row mt-3 mb-3">
+            <div class="col-sm-11">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search in table..."
+                    onkeyup="searchTable()" />
+            </div>
+            <div class="col-sm-1 d-flex">
+                <a class="btn btn-sm btn-primary w-100 h-100 d-flex align-items-center justify-content-center"
+                    asp-controller="Employee" asp-action="Create">New</a>
+            </div>
         </div>
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">LastName</th>
-                    <th scope="col">Start</th>
-                    <th scope="col">End</th>
-                    <th scope="col">Birth Date</th>
-                    <th scope="col">Department</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+        <div class="table-responsive">
+            <table id="employeeTable" class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark sticky-header">
+                    <tr>
+                        <th scope="col" onclick="sortTable(0)">Name</th>
+                        <th scope="col" onclick="sortTable(1)">LastName</th>
+                        <th scope="col" onclick="sortTable(2)">Start</th>
+                        <th scope="col" onclick="sortTable(3)">End</th>
+                        <th scope="col" onclick="sortTable(4)">Birth Date</th>
+                        <th scope="col" onclick="sortTable(5)">Department</th>
+                    </tr>
+                </thead>
+                <tbody>
                     @foreach (var employee in Model)
                     {
-                        <td>@employee.Name</td>
-                        <td>@employee.LastName</td>
-                        <td>@employee.ContractStart.ToString("dd/MM/yyyy")</td>
-                        <td>@employee.ContractEnd?.ToString("dd/MM/yyyy")</td>
-                        <td>@employee.BirthDate.ToString("dd/MM/yyyy")</td>
-                        <td>@employee.DepartmentType</td>
+                        <tr>
+                            <td>@employee.Name</td>
+                            <td>@employee.LastName</td>
+                            <td>@employee.ContractStart.ToString("dd/MM/yyyy")</td>
+                            <td>@employee.ContractEnd?.ToString("dd/MM/yyyy")</td>
+                            <td>@employee.BirthDate.ToString("dd/MM/yyyy")</td>
+                            <td>@employee.DepartmentType</td>
+                        </tr>
                     }
-                </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

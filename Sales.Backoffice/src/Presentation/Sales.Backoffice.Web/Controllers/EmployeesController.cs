@@ -12,14 +12,17 @@ public class EmployeesController(IWebApiClient webApiClient) : Controller
 	[HttpGet]
 	public async Task<IActionResult> Index(ActiveEmployeeOptionsDto activeEmployeeOptionsDto = ActiveEmployeeOptionsDto.OnlyActive)
 	{
-		return View(await webApiClient.GetEmployeesByFilterAsync(activeEmployeeOptionsDto));
+		var apiResponse = await webApiClient.GetEmployeesByFilterAsync(activeEmployeeOptionsDto);
+		
+		return View(apiResponse.Content);
 	}
 
 	[HttpPost]
 	[ValidateAntiForgeryToken]
 	public async Task<IActionResult> Post([FromForm] CreateEmployeeRequest request)
 	{
-		return await webApiClient.PostAsync(request);
+		webApiClient.PostAsync(request);
+		return Created();
 	}
 
 	public IActionResult Create()

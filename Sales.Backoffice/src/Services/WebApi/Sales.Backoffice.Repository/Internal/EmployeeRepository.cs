@@ -23,14 +23,19 @@ public class EmployeeRepository(ILogger<Employee> logger, ApplicationDbContext d
 		}
 	}
 
-    public async Task<List<Employee>> GetActiveEmployeesAsync()
-    {
-        return await dbContext.Employees.Where(x => x.IsActive).ToListAsync();
-    }
-
-    public async Task<IEnumerable<Employee>> GetAllAsync()
+	public async Task<List<Employee>> GetActiveEmployeesAsync()
 	{
-		return await dbContext.Employees.ToListAsync();
+		return await dbContext.Employees
+		.Where(x => !x.EndDate.HasValue)
+		.Include(x => x.Department)
+		.ToListAsync();
+	}
+
+	public async Task<IEnumerable<Employee>> GetAllAsync()
+	{
+		return await dbContext.Employees		
+		.Include(x => x.Department)
+		.ToListAsync();
 	}
 
 	public async Task<List<Employee>> GetByDepartmentAsync(DepartmentType departmentType)
@@ -47,8 +52,11 @@ public class EmployeeRepository(ILogger<Employee> logger, ApplicationDbContext d
 			.SingleOrDefaultAsync(x => x.Id == id);
 	}
 
-    public async Task<List<Employee>> GetNonActiveEmployeesAsync()
-    {
-        return await dbContext.Employees.Where(x => !x.IsActive).ToListAsync();
-    }
+	public async Task<List<Employee>> GetNonActiveEmployeesAsync()
+	{
+		return await dbContext.Employees
+		.Where(x => x.EndDate.HasValue)
+		.Include(x => x.Department)
+		.ToListAsync();
+	}
 }
